@@ -42,6 +42,7 @@
     background-color: #45a049;
 }
 
+/* Link Hover Effect */
 .links{
     position: relative;
 }
@@ -58,5 +59,19 @@
 .links:hover::before{
     width: 100%;
 }
+
+/*Content Section Styles */
+.content-container{
+    padding: 20px;
+    margin: 20px;
+    background: linear-gradient(to right, #45a049, #c6e0c7e0, #45a049e0);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 77vh;
+}
+
 
 
