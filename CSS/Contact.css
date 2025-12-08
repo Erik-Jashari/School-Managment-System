@@ -1,0 +1,162 @@
+/* Reuse Navbar Styles */
+.nav-bar{
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.nav-bar a{
+    color: black;
+    margin: 14px 16px;
+    text-decoration: none;
+    font-size: 19px;
+}
+.links{
+    position: relative;
+}
+.links::before{
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    height: 4px;
+    width: 0;
+    background-color: #45a049;
+    border-radius: 50px;
+    transition: width 0.4s ease;
+}
+.links:hover::before{
+    width: 100%;
+}
+.logo{
+    height: 50px;
+}
+.login-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.login-button:hover{
+    background-color: #45a049;
+}
+
+/* CONTACT SECTION */
+.contact-container{
+    margin: 40px auto;
+    padding: 40px;
+    width: 85%;
+    background-color: #ffffffb7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+
+    background-image: url('../Images/school-photo.avif');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Overlay */
+.contact-container::before{
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+}
+.contact-container > *{
+    position: relative;
+    z-index: 2;
+}
+
+.contact-left{
+    width: 45%;
+    color: white;
+}
+.contact-left h1{
+    font-size: 34px;
+    margin-bottom: 15px;
+    font-family: 'Arial Black', Gadget, sans-serif;
+}
+.contact-left p{
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-family: 'arial', sans-serif;
+}
+
+/* FORM */
+.contact-form{
+    display: flex;
+    flex-direction: column;
+}
+.contact-form label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-family: 'arial', sans-serif;
+}
+.contact-form input,
+.contact-form textarea{
+    padding: 12px;
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+.contact-form textarea{
+    height: 120px;
+    resize: none;
+}
+
+/* Send Button */
+.send-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.send-button:hover{
+    background-color: #45a049;
+}
+
+/* IMAGE */
+.contact-image img{
+    width: 450px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+
+}
+.contact-image::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+/* FOOTER */
+footer{
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}

@@ -2,15 +2,17 @@
 .nav-bar{
     background-color: white;
     overflow: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     padding: 14px 16px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 .nav-bar a{
     color: black;
-    text-align: center;
     margin: 14px 16px;
     text-decoration: none;
     font-size: 19px;
@@ -19,7 +21,6 @@
     display: flex;
     gap: 10px;
     align-items: center;
-    text-align: center;
 }
 .logo{
     height: 50px;
@@ -29,20 +30,16 @@
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
     border: none;
     border-radius: 4px;
+    cursor: pointer;
 }
 .login-button:hover{
     background-color: #45a049;
 }
 
-/* Link Hover Effect */
+/* Hover Line Effect */
 .links{
     position: relative;
 }
@@ -60,18 +57,100 @@
     width: 100%;
 }
 
-/*Content Section Styles */
+/* HERO SECTION (Background Image + Overlay) */
 .content-container{
+    position: relative;
     padding: 20px;
     margin: 20px;
-    background: linear-gradient(to right, #45a049, #c6e0c7e0, #45a049e0);
+    height: 80vh;
     border-radius: 8px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
-    height: 77vh;
+
+    background-image: url('../Images/school-photo.avif');
+    background-size: cover;
+    background-position: center;
 }
 
+/* Overlay */
+.content-container::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    z-index: 1;
+}
+.content-image{
+    border-radius: 10px;
+    object-fit: cover;
+}
+.content, .class-img{
+    position: relative;
+    z-index: 2;
+}
 
+.content{
+    width: 35%;
+    text-align: left;
+    color: white;
+}
+.content h1{
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-family: 'Arial Black', Gadget, sans-serif;
+}
+.content p{
+    font-size: 19px;
+    font-style: oblique;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-family: 'arial', sans-serif;
+}
+.get-started-button{
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.get-started-button:hover{
+    background-color: #45a049;
+}
 
+/* FEATURES SECTION */
+.features{
+    margin-top: 40px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+.feature-box{
+    width: 250px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background: white;
+}
+.feature-box h3{
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+/* FOOTER */
+footer{
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+}
