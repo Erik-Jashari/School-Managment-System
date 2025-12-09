@@ -1,9 +1,11 @@
-
+body{
+    font-family: Arial, sans-serif;
+}
 /* Navigation Bar Styles */
-.nav-bar{
+.nav-bar {
     background-color: white;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 14px 16px;
     display: flex;
     justify-content: space-around;
@@ -12,22 +14,57 @@
     top: 0;
     z-index: 1000;
 }
-.nav-bar a{
+
+.logo-box {
+    width: 48px;
+    height: 48px;
+    background-color: #4CAF50;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.page-links, .auth-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-bar a {
     color: black;
     margin: 14px 16px;
     text-decoration: none;
     font-size: 19px;
 }
-.page-links{
-    display: flex;
-    gap: 10px;
-    align-items: center;
+
+/* Hover Line Effect */
+.links {
+    position: relative;
+    padding: 8px 16px;
 }
-.logo{
-    height: 50px;
-    width: auto;
+
+.links::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background-color: #4CAF50;
+    border-radius: 50px;
+    transition: width 0.4s ease;
 }
-.login-button{
+
+.links:hover::before,
+.links.active::before {
+    width: 100%;
+}
+
+.login-button {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -36,26 +73,9 @@
     border-radius: 4px;
     cursor: pointer;
 }
-.login-button:hover{
-    background-color: #45a049;
-}
 
-/* Hover Line Effect */
-.links{
-    position: relative;
-}
-.links::before{
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    height: 4px;
-    width: 0;
+.login-button:hover {
     background-color: #45a049;
-    border-radius: 50px;
-    transition: width 0.4s ease;
-}
-.links:hover::before{
-    width: 100%;
 }
 
 /* HERO SECTION (Background Image + Overlay) */
@@ -154,6 +174,9 @@ footer{
     color: white;
     text-align: center;
     font-size: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
 /*Image Slider*/
 #bg-slider {
@@ -167,4 +190,15 @@ footer{
     border-radius: 8px;
     z-index: 0;
     transition: background-image 1s ease-in-out;
+}
+/*Admin link */
+.admin-link {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+.admin-link:hover {
+    text-decoration: underline;
+    color: #45a049;
 }
