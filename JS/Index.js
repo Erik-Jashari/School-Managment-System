@@ -1,8 +1,9 @@
 const bg = document.getElementById('bg-slider');
     const images = [
         'Images/school-photo.avif',
-        'Images/students.jpg',
-        'Images/hands-llaptop.jpg'
+        'Images/school-photo2.png',
+        'Images/hands-llaptop.jpg',
+        'Images/school-hall.jpg'
     ];
 
     let i = 0;
