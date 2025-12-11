@@ -6,23 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
     <link rel="stylesheet" href="CSS/Contact.css">
+    <link rel="stylesheet" href="CSS/Global.css">
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <div class="logo-box">SM</div>
-        <div class="page-links">
-            <a href="Index.html" class="links">Home</a>
-            <a href="About.html" class="links">About</a>
-            <a href="Contact.html" class="links active">Contact</a>
-        </div>
-        <div class="auth-links">
-            <a href="Teacher-Profile.html" class="links">Profile</a>
-            <a href="Login.html"><button class="login-button">Login</button></a>
-        </div>
-    </nav>
+    <div id="app-header"></div>
 
-    <!-- CONTACT SECTION -->
+    <main class="dashboard-container"></main>
+
+    <!-- Contact Section -->
     <div class="contact-container">
         <div id="bg-slider"></div>
 
@@ -50,11 +42,10 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 TeachShare • All rights reserved</p>
-        <a class="admin-link" href="admin-login.html">Login as admin</a>
-    </footer>
+    <!-- Footer -->
+    <div id="app-footer"></div>
+
+    <script src="JS/HeaderFooter.js"></script>
     
 
     <script src="JS/Contact.js"></script>

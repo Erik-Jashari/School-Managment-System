@@ -5,21 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
     <link rel="stylesheet" href="CSS/Teacher-Profile.css">
+    <link rel="stylesheet" href="CSS/Global.css">
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <div class="logo-box">SM</div>
-        <div class="page-links">
-            <a href="index.html" class="links">Home</a>
-            <a href="about.html" class="links">About</a>
-            <a href="contact.html" class="links">Contact</a>
-        </div>
-        <div class="auth-links">
-            <a href="Teacher-Profile.html" class="links active">Profile</a>
-            <a href="login.html"><button class="login-button">Login</button></a>
-        </div>
-    </nav>
+    <div id="app-header"></div>
+
+    <main class="dashboard-container"></main>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -174,9 +166,8 @@
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2025 TeachShare • All rights reserved</p>
-        <a class="admin-link" href="admin-login.html">Login as admin</a>
-    </footer>
+     <div id="app-footer"></div>
+
+    <script src="JS/HeaderFooter.js"></script>
 </body>
 </html>

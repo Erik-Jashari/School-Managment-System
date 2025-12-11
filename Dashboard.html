@@ -3,32 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Teacher Dashboard - Class Manager</title>
     <link rel="stylesheet" href="CSS/Dashboard.css">
+    <link rel="stylesheet" href="CSS/Global.css">
 </head>
 <body>
     <!-- Navigation Bar -->
-    <nav class="nav-bar">
-        <div class="logo-box">SM</div>
-        <div class="page-links">
-            <a href="Index.html" class="links active">Home</a>
-            <a href="About.html" class="links">About</a>
-            <a href="Contact.html" class="links">Contact</a>
-        </div>
-        <div class="auth-links">
-            <a href="Teacher-Profile.html" class="links">Profile</a>
-            <button class="login-button">Login</button>
-        </div>
-    </nav>
-    
+    <div id="app-header"></div>
 
+    <main class="dashboard-container"></main>
+        
+        <aside class="class-sidebar">
+            <h3>My Schedule</h3>
+            <ul class="period-list">
+                <li class="period-item active">Period 1: Algebra II</li>
+                <li class="period-item">Period 2: Geometry</li>
+                <li class="period-item">Period 3: Calculus AP</li>
+                <li class="period-item">Period 4: Planning</li>
+                <li class="period-item">Period 5: Algebra I</li>
+            </ul>
+        </aside>
+
+        <div class="dashboard-main">
+            
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Total Students</h4>
+                        <p>28</p>
+                    </div>
+                    <div class="stat-icon">👥</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Attendance Rate</h4>
+                        <p>96%</p>
+                    </div>
+                    <div class="stat-icon">📅</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h4>Assignments Due</h4>
+                        <p>2</p>
+                    </div>
+                    <div class="stat-icon">📝</div>
+                </div>
+            </div>
+
+            <section class="roster-section">
+                <div class="section-header">
+                    <h2>Period 1: Algebra II - Roster</h2>
+                    <div class="header-actions">
+                        <button class="action-btn secondary">Email Parents</button>
+                        <button class="action-btn">Add Student</button>
+                    </div>
+                </div>
+
+                <table class="student-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Status</th>
+                            <th>Today's Attendance</th>
+                            <th>Current Grade</th>
+                            <th>Missing Work</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Liam Johnson</strong><br>
+                                <span style="font-size: 0.8rem; color: #888;">ID: 2024001</span>
+                            </td>
+                            <td><span style="color: green;">Active</span></td>
+                            <td><button class="attendance-toggle present">Present</button></td>
+                            <td><span class="grade-badge grade-a">92% (A)</span></td>
+                            <td>None</td>
+                            <td><a href="#">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Emma Davis</strong><br>
+                                <span style="font-size: 0.8rem; color: #888;">ID: 2024002</span>
+                            </td>
+                            <td><span style="color: green;">Active</span></td>
+                            <td><button class="attendance-toggle absent">Absent</button></td>
+                            <td><span class="grade-badge grade-c">74% (C)</span></td>
+                            <td><span style="color: red;">1 Assignment</span></td>
+                            <td><a href="#">Edit</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Noah Smith</strong><br>
+                                <span style="font-size: 0.8rem; color: #888;">ID: 2024003</span>
+                            </td>
+                            <td><span style="color: orange;">At Risk</span></td>
+                            <td><button class="attendance-toggle present">Present</button></td>
+                            <td><span class="grade-badge grade-f">58% (F)</span></td>
+                            <td><span style="color: red;">3 Assignments</span></td>
+                            <td><a href="#">Edit</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
 
     <!-- Footer -->
-     <div class="footer-div">
-        <footer>
-            <p>© 2025 TeachShare • All rights reserved</p>
-            <a class="admin-link" href="admin-login.html">Login as admin</a>
-        </footer>
-    </div>
+    <div id="app-footer"></div>
+
+    <script src="JS/HeaderFooter.js"></script>
 </body>
 </html>
