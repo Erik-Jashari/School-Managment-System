@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments Hub</title>
+    <link rel="stylesheet" href="CSS/Global.css"> 
+    <link rel="stylesheet" href="CSS/Assignments.css"> 
+</head>
+<body>
+    <div id="app-header"></div>
+    
+    <main class="assignments-container">
+        <div class="header-bar">
+            <h1>Assignments: Algebra II (Period 1)</h1>
+            <div class="actions">
+                <button class="primary-button create-assignment-btn">➕ Create New Assignment</button>
+            </div>
+        </div>
+
+        <div class="assignment-filters">
+            <select id="filter-type">
+                <option value="all">Filter by Type: All</option>
+                <option value="homework">Homework</option>
+                <option value="quiz">Quiz</option>
+                <option value="test">Test</option>
+            </select>
+            <input type="text" id="search-assignment" placeholder="Search by Assignment Name...">
+        </div>
+
+        <section class="assignment-list-section">
+            <table class="assignment-table">
+                <thead>
+                    <tr>
+                        <th>Assignment Name</th>
+                        <th>Type</th>
+                        <th>Due Date</th>
+                        <th>Submissions</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-status="pending">
+                        <td>Week 3: Quadratic Formula</td>
+                        <td>Homework</td>
+                        <td>Oct 25, 2025</td>
+                        <td>25/28</td>
+                        <td><span class="status-badge pending">Needs Grading (25)</span></td>
+                        <td>
+                            <button class="grade-btn">Grade Submissions</button>
+                        </td>
+                    </tr>
+                    <tr data-status="draft">
+                        <td>Unit 2: Polynomial Test</td>
+                        <td>Test</td>
+                        <td>Nov 10, 2025</td>
+                        <td>0/28</td>
+                        <td><span class="status-badge draft">Draft</span></td>
+                        <td>
+                            <button class="edit-btn secondary-button">Edit & Publish</button>
+                        </td>
+                    </tr>
+                    <tr data-status="graded">
+                        <td>Quiz 1: Review</td>
+                        <td>Quiz</td>
+                        <td>Oct 15, 2025</td>
+                        <td>28/28</td>
+                        <td><span class="status-badge graded">Graded</span></td>
+                        <td>
+                            <button class="view-btn secondary-button">View Grades</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <div id="create-assignment-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Create New Assignment</h2>
+        <form id="new-assignment-form">
+            <div class="form-group">
+                <label for="assignment-name">Assignment Name</label>
+                <input type="text" id="assignment-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="assignment-class">Assign to Class</label>
+                <select id="assignment-class">
+                    <option value="Period 1: Algebra II">Period 1: Algebra II</option>
+                    <option value="Period 2: Geometry">Period 2: Geometry</option>
+                    <option value="Period 3: Calculus AP">Period 3: Calculus AP</option>
+                    <option value="Period 5: Algebra I">Period 5: Algebra I</option>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="due-date">Due Date</label>
+                    <input type="date" id="due-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="assignment-type">Type</label>
+                    <select id="assignment-type">
+                        <option value="Homework">Homework</option>
+                        <option value="Quiz">Quiz</option>
+                        <option value="Test">Test</option>
+                        <option value="Project">Project</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Instructions/Description</label>
+                <textarea id="description" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="primary-button">Publish Assignment</button>
+          </form>
+        </div>
+    </div>
+
+    <div id="grade-submissions-modal" class="modal">
+         <div class="modal-content large-modal">
+            <span class="close-button grade-close-button">&times;</span>
+            <h2 id="grading-assignment-title">Grading: Week 3: Quadratic Formula</h2>
+            <p class="grading-meta">Class: Period 1: Algebra II | Submissions: 25/28</p>
+
+             <table class="grading-table">
+                <thead>
+                     <tr>
+                       <th>Student Name</th>
+                        <th>Status</th>
+                       <th>Submission Date</th>
+                       <th>Score / 100</th>
+                       <th>Feedback</th>
+                   </tr>
+                 </thead>
+                  <tbody>
+                   <tr data-student-id="2024001">
+                       <td>Liam Johnson</td>
+                       <td><span class="status-badge graded">Submitted</span></td>
+                       <td>10/24/2025</td>
+                       <td><input type="number" min="0" max="100" value="95" class="score-input"></td>
+                       <td><input type="text" placeholder="Optional feedback..."></td>
+                  </tr>
+                    <tr data-student-id="2024002">
+                       <td>Emma Davis</td>
+                        <td><span class="status-badge missing">Missing</span></td>
+                        <td>N/A</td>
+                        <td><input type="number" min="0" max="100" disabled></td>
+                        <td><input type="text" placeholder="Marked as 0 until submitted" disabled></td>
+                     </tr>
+                    </tbody>
+                </table>
+        
+        <div class="modal-footer">
+            <button class="primary-button save-grades-btn">Save All Grades</button>
+        </div>
+    </div>
+</div>
+
+    <div id="app-footer"></div>
+
+    <script src="JS/HeaderFooter.js"></script>
+    <script src="JS/Assignments.js"></script>
+</body>
+</html>

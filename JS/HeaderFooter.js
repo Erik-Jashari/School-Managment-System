@@ -5,9 +5,9 @@ const AppHeader = `
             <a href="Index.html" class="links">Home</a>
             <a href="About.html" class="links">About</a>
             <a href="Contact.html" class="links">Contact</a>
+            <a href="Dashboard.html" class="links">Dashboard</a>
         </div>
         <div class="auth-links">
-            <a href="Dashboard.html" class="links">Dashboard</a>
             <a href="Teacher-Profile.html" class="links">Profile</a>
             <a href="Login.html"><button class="login-button">Login</button></a>
         </div>

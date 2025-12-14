@@ -1,12 +1,9 @@
-body{
-    font-family: Arial, sans-serif;
-}
 /* HERO SECTION (Background Image + Overlay) */
 .content-container{
     position: relative;
     padding: 20px;
     margin: 20px;
-    height: 80vh;
+    height: 100vh;
     border-radius: 8px;
     display: flex;
     justify-content: space-around;
