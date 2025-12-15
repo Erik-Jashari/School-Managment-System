@@ -303,11 +303,6 @@
     .user-details {
         justify-content: center;
     }
-    
-    .nav-bar {
-        flex-direction: column;
-        gap: 16px;
-    }
 }
 
 @media (max-width: 480px) {
