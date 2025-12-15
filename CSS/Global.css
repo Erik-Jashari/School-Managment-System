@@ -187,22 +187,18 @@ body {
 }
 
 /* FOOTER */
-footer {    
+footer {
     margin-top: auto;
-    padding: 1.6rem 1.1rem;
+    padding: 1rem 1rem;
     background-color: #0f6015cd;
     color: white;
     text-align: center;
-<<<<<<< HEAD
-    font-size: 1rem;
-=======
-    font-size: 0.9rem;
->>>>>>> f9b6e1c779349be5b8dd5e4fcbb43ba6a9d52dce
+    font-size: 1.2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 1.5rem;
+    gap: 0.8rem;
 }
 
 /*Admin link */
@@ -222,9 +218,9 @@ footer {
 /* Tablet Footer */
 @media (max-width: 768px) {
     footer {
-        padding: 1.5rem 1rem;
-        font-size: 1.4rem;
-        gap: 1rem;
+        padding: 1rem 0.8rem;
+        font-size: 1.1rem;
+        gap: 0.6rem;
     }
 }
 
@@ -232,9 +228,9 @@ footer {
 @media (max-width: 480px) {
     footer {
         flex-direction: column;
-        padding: 1.2rem 0.8rem;
-        font-size: 1.2rem;
-        gap: 0.8rem;
+        padding: 0.7rem 0.5rem;
+        font-size: 1rem;
+        gap: 0.6rem;
     }
     
     .admin-link {
