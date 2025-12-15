@@ -187,13 +187,17 @@ body {
 }
 
 /* FOOTER */
-footer {
+footer {    
     margin-top: auto;
-    padding: 2rem 1.6rem;
+    padding: 1.6rem 1.1rem;
     background-color: #0f6015cd;
     color: white;
     text-align: center;
+<<<<<<< HEAD
     font-size: 1rem;
+=======
+    font-size: 0.9rem;
+>>>>>>> f9b6e1c779349be5b8dd5e4fcbb43ba6a9d52dce
     display: flex;
     justify-content: space-evenly;
     align-items: center;
