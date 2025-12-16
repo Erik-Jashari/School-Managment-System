@@ -10,6 +10,7 @@
 <body>
     <div id="app-header"></div>
     
+    <!-- Header of Assignments Hub -->
     <main class="assignments-container">
         <div class="header-bar">
             <h1>Assignments: Algebra II (Period 1)</h1>
@@ -18,6 +19,7 @@
             </div>
         </div>
 
+    <!-- Filters and Search -->
         <div class="assignment-filters">
             <select id="filter-type">
                 <option value="all">Filter by Type: All</option>
@@ -28,6 +30,7 @@
             <input type="text" id="search-assignment" placeholder="Search by Assignment Name...">
         </div>
 
+    <!-- Assignment List Table -->
         <section class="assignment-list-section">
             <table class="assignment-table">
                 <thead>
@@ -76,10 +79,12 @@
         </section>
     </main>
 
+    <!-- The Create new assignment popup -->
     <div id="create-assignment-modal" class="modal">
     <div class="modal-content">
         <span class="close-button">&times;</span>
         <h2>Create New Assignment</h2>
+    <!-- Form for creating a new assignment -->
         <form id="new-assignment-form">
             <div class="form-group">
                 <label for="assignment-name">Assignment Name</label>

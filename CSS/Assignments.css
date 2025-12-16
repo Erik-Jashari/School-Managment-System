@@ -26,8 +26,7 @@
     border-radius: 8px;
 }
 
-.assignment-filters select, 
-.assignment-filters input {
+.assignment-filters select, .assignment-filters input {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -156,8 +155,7 @@
     cursor: pointer;
 }
 
-.close-button:hover,
-.close-button:focus {
+.close-button:hover,.close-button:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
