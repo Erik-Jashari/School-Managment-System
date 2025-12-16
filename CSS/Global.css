@@ -5,6 +5,8 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .nav-bar {
@@ -118,10 +120,16 @@ footer {
     text-align: center;
     font-size: 1.2rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.8rem;
+}
+main {
+    flex: 1;
+}
+#add-footer{
+    align-self: flex-end;
 }
 
 /*Admin link */

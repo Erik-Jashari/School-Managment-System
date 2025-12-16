@@ -1,6 +1,6 @@
 const AppHeader = `
     <nav class="nav-bar">
-        <div class="logo-box">SM</div>
+        <a href="Index.html"><div class="logo-box">SM</div></a>
         <button id="hamburgerBtn" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
             <span></span>
             <span></span>
@@ -21,7 +21,7 @@ const AppHeader = `
 
 const AppFooter = `
     <footer>
-        <p>© 2025 TeachShare • All rights reserved</p>
+        <p>© 2025 School Management • All rights reserved</p>
         <a class="admin-link" href="admin-login.html">Login as admin</a>
     </footer>
 `;
