@@ -87,7 +87,6 @@
 .contact-image img{
     width: 500px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
 }
 .contact-image::before{
     content: "";
@@ -123,4 +122,17 @@
     border-radius: 8px;
     z-index: 0;
     transition: background-image 1s ease-in-out;
+}
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .contact-left, .contact-image {
+        width: 100%;
+        text-align: center;
+    }
+    .contact-image img {
+        display: none;
+    }
 }
