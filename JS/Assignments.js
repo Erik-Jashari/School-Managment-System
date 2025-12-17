@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         alert(`Success! Assignment "${assignmentName}" published for ${assignmentClass}.`);
-        // -----------------------------------------------------------
 
         modal.style.display = "none"; // Close the modal
         form.reset(); // Clear the form
