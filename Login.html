@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - TeachShare</title>
+    <title>Login</title>
         <link rel="stylesheet" href="CSS/Global.css">
     <link rel="stylesheet" href="CSS/Login.css">
 </head>
@@ -71,27 +71,6 @@
      <div id="app-footer"></div>
 
     <script src="JS/HeaderFooter.js"></script>
-
-    <script>
-        function togglePassword() {
-            const passwordInput = document.getElementById('password');
-            const toggleBtn = document.querySelector('.toggle-password');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleBtn.textContent = 'Hide';
-            } else {
-                passwordInput.type = 'password';
-                toggleBtn.textContent = 'Show';
-            }
-        }
-
-        document.getElementById('login-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            console.log('Login attempt:', { email, password });
-        });
-    </script>
+    <script src="JS/Login.js"></script>
 </body>
 </html>

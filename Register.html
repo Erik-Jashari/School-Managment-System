@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - TeachShare</title>
+    <title>Register</title>
     <link rel="stylesheet" href="CSS/Global.css">
     <link rel="stylesheet" href="CSS/Login.css">
 </head>
@@ -17,7 +17,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <h1>Create Account</h1>
-            <p class="subtitle">Join TeachShare and start sharing lessons</p>
+            <p class="subtitle">Join School and start sharing lessons</p>
 
             <div class="error-message" id="error-message"></div>
             <div class="success-message" id="success-message"></div>
@@ -76,39 +76,6 @@
      <div id="app-footer"></div>
 
     <script src="JS/HeaderFooter.js"></script>
-
-    <script>
-        function togglePassword(inputId) {
-            const passwordInput = document.getElementById(inputId);
-            const toggleBtn = passwordInput.nextElementSibling;
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleBtn.textContent = 'Hide';
-            } else {
-                passwordInput.type = 'password';
-                toggleBtn.textContent = 'Show';
-            }
-        }
-
-        document.getElementById('register-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            const errorMessage = document.getElementById('error-message');
-            
-            if (password !== confirmPassword) {
-                errorMessage.textContent = 'Passwords do not match!';
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            errorMessage.style.display = 'none';
-            
-            // Registration logic here
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            console.log('Registration attempt:', { fullname, email, password });
-        });
-    </script>
+    <script src="JS/Register.js"></script>
 </body>
 </html>
