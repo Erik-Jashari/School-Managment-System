@@ -57,7 +57,7 @@
 /* Top Stats Bar */
 .stats-bar {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
 }
 .stat-card {
@@ -248,13 +248,15 @@
     .roster-section { 
         padding: 1rem; 
         overflow-x: auto; 
+        -webkit-overflow-scrolling: touch;
     }
     .student-table { 
-        min-width: 640px; 
+        min-width: 600px; 
+        font-size: 0.9rem;
     }
     .student-table th, .student-table td { 
         padding: 8px; 
-        font-size: 1.2rem; 
+        font-size: 0.85rem; 
     }
 
     .section-header h2 { 
@@ -277,6 +279,49 @@
         width: 3rem; 
         height: 3rem; 
         font-size: 1.2rem; 
+    }
+}
+
+/* Small-screen table -> stacked cards */
+@media (max-width: 480px) {
+    .student-table thead {
+        display: none;
+    }
+
+    .student-table, .student-table tbody, .student-table tr, .student-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .student-table tr {
+        margin-bottom: 12px;
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .student-table td {
+        padding: 6px 0;
+        font-size: 0.88rem;
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .student-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
+        margin-right: 8px;
+        flex: 1 1 55%;
+        font-size: 0.82rem;
+    }
+
+    .student-table td > * {
+        flex: 1 1 45%;
+        text-align: right;
     }
 }
 

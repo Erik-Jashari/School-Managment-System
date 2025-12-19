@@ -109,15 +109,15 @@ function updateRosterTable(roster) {
         const row = document.createElement('tr');
         
         row.innerHTML = `
-            <td>
+            <td data-label="Student Name">
                 <strong>${student.name}</strong><br>
                 <span style="font-size: 0.8rem; color: #888;">ID: ${student.id}</span>
             </td>
-            <td><span style="color: ${student.status === 'At Risk' ? 'orange' : 'green'};">${student.status}</span></td>
-            <td><button class="attendance-toggle ${student.attendance.toLowerCase()}" data-status="${student.attendance.toLowerCase()}">${student.attendance}</button></td>
-            <td><span class="grade-badge ${gradeClass}">${student.grade}</span></td>
-            <td><span style="color: ${student.missing !== 'None' ? 'red' : 'inherit'};">${student.missing}</span></td>
-            <td><a href="#">Edit</a></td>
+            <td data-label="Status"><span style="color: ${student.status === 'At Risk' ? 'orange' : 'green'};">${student.status}</span></td>
+            <td data-label="Today's Attendance"><button class="attendance-toggle ${student.attendance.toLowerCase()}" data-status="${student.attendance.toLowerCase()}">${student.attendance}</button></td>
+            <td data-label="Current Grade"><span class="grade-badge ${gradeClass}">${student.grade}</span></td>
+            <td data-label="Missing Work"><span style="color: ${student.missing !== 'None' ? 'red' : 'inherit'};">${student.missing}</span></td>
+            <td data-label="Actions"><a href="#">Edit</a></td>
         `;
         tbody.appendChild(row);
     });
@@ -133,47 +133,6 @@ function getGradeClass(gradeString) {
         case 'D': return 'grade-d';
         case 'F': return 'grade-f';
         default: return '';
-    }
-}
-
-
-function setupAttendanceToggle(totalStudents) {
-    const toggles = document.querySelectorAll('.attendance-toggle');
-    const attendanceStatElement = document.querySelector('.stat-card:nth-child(2) p');
-    
-    // Get the current counts from the table for the newly loaded class
-    let currentPresentCount = document.querySelectorAll('.attendance-toggle[data-status="present"]').length;
-
-    toggles.forEach(button => {
-        // Remove previous listeners to avoid conflicts when table reloads
-        button.removeEventListener('click', handleAttendanceClick);
-        button.addEventListener('click', handleAttendanceClick);
-    });
-
-    function handleAttendanceClick() {
-        if (this.classList.contains('present')) {
-            // Change status from Present to Absent
-            this.classList.remove('present');
-            this.classList.add('absent');
-            this.textContent = 'Absent';
-            this.dataset.status = 'absent';
-            currentPresentCount--;
-        } else {
-            // Change status from Absent to Present
-            this.classList.remove('absent');
-            this.classList.add('present');
-            this.textContent = 'Present';
-            this.dataset.status = 'present';
-            currentPresentCount++;
-        }
-        
-        // Update the percentage stat at the top of the dashboard
-        updateAttendanceStatDisplay(currentPresentCount, totalStudents);
-    }
-    
-    function updateAttendanceStatDisplay(presentCount, total) {
-        const percentage = (total > 0) ? Math.round((presentCount / total) * 100) : 100;
-        attendanceStatElement.textContent = `${percentage}%`;
     }
 }
 
