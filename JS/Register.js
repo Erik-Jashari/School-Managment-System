@@ -14,8 +14,10 @@ function togglePassword(inputId) {
 
 // Email: Validates format username@domain.extension (letters, numbers, dots, underscores, hyphens allowed)
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 // Full Name: Allows letters, spaces, hyphens, and apostrophes (e.g., "John Smith", "O'Brien", "Mary-Jane")
 const fullNameRegex = /^[a-zA-Z]+([ '-][a-zA-Z]+)*$/;
+
 // Password: Minimum 8 characters with at least one uppercase, one lowercase, one digit, and one special character (@$!%*?&)
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
