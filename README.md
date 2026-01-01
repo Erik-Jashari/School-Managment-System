@@ -29,3 +29,7 @@ Front-end assets:
 **What’s implemented**
 - Static pages for the main flows: home, about, contact, assignments, login/register, dashboard, and teacher profile.
 - Responsive styles organized under `CSS/` and client logic in `JS/`.
+
+## Database Setup
+1. Run schema.sql to create tables
+2. Run seed.sql for test data (optional - development only)
