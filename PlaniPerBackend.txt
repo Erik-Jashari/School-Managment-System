@@ -1,0 +1,183 @@
+================================================================================
+                    SCHOOL MANAGEMENT SYSTEM - BACKEND PLAN
+================================================================================
+
+Team: Blini Ibrahimi, Albion Hakiu, Erik Jashari
+Last Updated: January 2026
+
+================================================================================
+                              PROGRESS TRACKER
+================================================================================
+
+[X] Phase 1: Database (SQL)              - COMPLETED
+[ ] Phase 2: PHP Backend Structure       - IN PROGRESS
+[ ] Phase 3: Admin CRUD (PHP)            - Pending
+[ ] Phase 4: Student Backend (PHP)       - Pending
+[ ] Phase 5: HTML Structure Updates      - Pending
+[ ] Phase 6: CSS Styling                 - Pending
+[ ] Phase 7: JavaScript Interactivity    - Pending
+[ ] Phase 8: Testing & Polish            - Pending
+
+================================================================================
+                    PHASE 1: DATABASE (SQL) - COMPLETED
+================================================================================
+Files created:
+  - database/schema.sql  (table structure)
+  - database/seed.sql    (test data)
+
+Test login credentials:
+  - Admin:   admin@school.com / Test123!
+  - Student: arta.berisha@student.com / Test123!
+
+================================================================================
+                    PHASE 2: PHP BACKEND STRUCTURE
+================================================================================
+Estimated: 2-3 sessions
+Goal: Set up PHP project structure and database connection
+
+FOLDER STRUCTURE TO CREATE:
+  /config/
+      database.php         - PDO database connection
+  /includes/
+      header.php           - Shared header
+      footer.php           - Shared footer
+      auth.php             - Authentication functions
+  /admin/                  - Admin pages (Phase 3)
+  /uploads/                - File uploads folder
+
+TASKS:
+  [ ] Create config/database.php
+      - PDO connection with error handling
+      - Database credentials
+
+  [ ] Create includes/auth.php
+      - Password hashing (for register)
+      - Password verification (for login)
+      - isAdmin() function
+      - isStudent() function
+      - logout() function
+
+  [ ] Session management
+      - Start session on all pages
+      - Store user role and login state
+
+================================================================================
+                    PHASE 3: ADMIN CRUD OPERATIONS (PHP)
+================================================================================
+Estimated: 4-5 sessions
+Goal: Build admin functionality (populates data for students)
+
+FILES TO CREATE:
+  [ ] admin/login.php      - Admin login form + processing
+  [ ] admin/index.php      - Dashboard with counts (students, groups, etc.)
+  [ ] admin/students.php   - List, Add, Edit, Delete students
+  [ ] admin/groups.php     - List, Add, Edit, Delete groups
+  [ ] admin/subjects.php   - List, Add, Edit, Delete subjects
+  [ ] admin/lessons.php    - CRUD + file upload for materials
+  [ ] admin/assignments.php - CRUD + link to lessons/groups
+  [ ] admin/schedules.php  - Timetable management
+  [ ] admin/messages.php   - View contact messages (read-only)
+  [ ] admin/logout.php     - Destroy session, redirect
+
+CRUD PATTERN (same for each):
+  1. List all records in a table
+  2. Add new record form
+  3. Edit existing record
+  4. Delete with confirmation
+
+================================================================================
+                    PHASE 4: STUDENT BACKEND (PHP)
+================================================================================
+Estimated: 3-4 sessions
+Goal: Student-facing PHP functionality
+
+FILES TO CREATE/UPDATE:
+  [ ] login.php            - Student login processing
+  [ ] register.php         - Student registration processing
+  [ ] dashboard.php        - Student dashboard
+      - Fetch student's group
+      - Fetch today's schedule
+      - Fetch pending assignments
+      - Fetch recent lessons
+  [ ] assignments.php      - Student assignments
+      - List assignments for student's group
+      - Submission form processing
+      - File upload handling
+  [ ] profile.php          - Student profile
+      - Fetch student data
+      - Calculate stats (completed assignments, grades, attendance)
+  [ ] contact.php          - Contact form processing
+
+================================================================================
+                    PHASE 5: HTML STRUCTURE UPDATES
+================================================================================
+Estimated: 2-3 sessions
+Goal: Convert static HTML to PHP templates
+
+TASKS:
+  [ ] Rename all .html files to .php
+  [ ] Create admin dashboard layout (new design)
+  [ ] Create admin login page
+  [ ] Update student dashboard with dynamic sections
+  [ ] Update student profile with DB-driven stats
+  [ ] Update assignments page for student submission view
+  [ ] Create shared includes (header.php, footer.php)
+
+================================================================================
+                    PHASE 6: CSS STYLING
+================================================================================
+Estimated: 2-3 sessions
+Goal: Style new pages and refine existing styles
+
+FILES TO CREATE/UPDATE:
+  [ ] CSS/Admin.css
+      - Sidebar navigation
+      - Data tables
+      - Form styling
+      - CRUD action buttons
+  [ ] CSS/Dashboard.css    - Student-focused layout
+  [ ] CSS/Profile.css      - Stats cards, progress indicators
+  [ ] Form improvements    - Consistent styling
+  [ ] Responsive testing   - Mobile compatibility
+
+================================================================================
+                    PHASE 7: JAVASCRIPT INTERACTIVITY
+================================================================================
+Estimated: 2-3 sessions
+Goal: Enhance UX with client-side functionality
+
+TASKS:
+  [ ] Update Login.js, Register.js for PHP flow
+  [ ] Admin Dashboard.js
+      - Confirm delete dialogs
+      - Dynamic table filtering
+      - Modal forms for quick add/edit
+  [ ] Student Dashboard.js
+      - Schedule interactions
+      - Assignment status updates
+  [ ] AJAX submissions (optional)
+  [ ] Dynamic stats updates
+
+================================================================================
+                    PHASE 8: TESTING & POLISH
+================================================================================
+Estimated: 1-2 sessions
+Goal: Final validation and improvements
+
+TESTING CHECKLIST:
+  [ ] Test all CRUD operations (Create, Read, Update, Delete)
+  [ ] Test authentication flow (login, logout, session expiry)
+  [ ] Test role protection (admin pages blocked for students)
+  [ ] Test student workflows (view lessons, submit assignments)
+  [ ] Security review (SQL injection, XSS, CSRF)
+  [ ] Bug fixes and UI polish
+
+================================================================================
+                              NOTES
+================================================================================
+- Run XAMPP (Apache + MySQL) before testing
+- Database: school_management_system
+- Always test in localhost before pushing
+- Commit after completing each task
+
+================================================================================
