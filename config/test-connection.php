@@ -1,13 +1,11 @@
 <?php
     require_once 'database.php';
 
-    $pdo = getConnection();
-
-    if ($pdo) {
+    if ($connection) {
         echo "Database connection successful!";
 
-        $stmt = $pdo->query("SELECT COUNT(*) as total from Users");
-        $result = $stmt->fetch();
-        echo " Total Users: " . $result['total'];
+        $result = mysqli_query($connection, "SELECT COUNT(*) as total FROM Users");
+        $row = mysqli_fetch_assoc($result);
+        echo " Total Users: " . $row['total'];
     }
 ?>

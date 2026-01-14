@@ -4,16 +4,6 @@
 session_start();
 require_once __DIR__ . '/../config/database.php';
 
-// ========== PASSWORD FUNCTIONS ==========
-
-function hashPassword($password) {
-    return password_hash($password, PASSWORD_DEFAULT);
-}
-
-function verifyPassword($password, $hash) {
-    return password_verify($password, $hash);
-}
-
 // ========== SESSION CHECK FUNCTIONS ==========
 
 function isLoggedIn() {
@@ -28,24 +18,17 @@ function isStudent() {
     return isLoggedIn() && $_SESSION['role'] === 'Student';
 }
 
-function getCurrentUserId() {
-    return $_SESSION['user_id'] ?? null;
-}
-
-function getCurrentUserRole() {
-    return $_SESSION['role'] ?? null;
-}
-
 // ========== LOGIN / LOGOUT FUNCTIONS ==========
 
 function login($email, $password) {
-    $pdo = getConnection();
+    global $connection;
     
-    $stmt = $pdo->prepare("SELECT id, name, email, password, role FROM Users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    $email = mysqli_real_escape_string($connection, $email);
+    $query = "SELECT id, name, email, password, role FROM Users WHERE email = '$email'";
+    $result = mysqli_query($connection, $query);
+    $user = mysqli_fetch_assoc($result);
     
-    if (!$user || !verifyPassword($password, $user['password'])) {
+    if (!$user || !password_verify($password, $user['password'])) {
         return ['success' => false, 'message' => 'Invalid email or password'];
     }
     
@@ -99,25 +82,27 @@ function requireStudent() {
 // ========== REGISTRATION FUNCTION ==========
 
 function register($name, $email, $password, $role = 'Student') {
-    $pdo = getConnection();
+    global $connection;
     
     // Check if email exists
-    $stmt = $pdo->prepare("SELECT id FROM Users WHERE email = ?");
-    $stmt->execute([$email]);
+    $email = mysqli_real_escape_string($connection, $email);
+    $query = "SELECT id FROM Users WHERE email = '$email'";
+    $result = mysqli_query($connection, $query);
     
-    if ($stmt->fetch()) {
+    if (mysqli_fetch_assoc($result)) {
         return ['success' => false, 'message' => 'Email already registered'];
     }
     
     // Insert new user with hashed password
-    $hashedPassword = hashPassword($password);
-    $stmt = $pdo->prepare("INSERT INTO Users (name, email, password, role) VALUES (?, ?, ?, ?)");
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $name = mysqli_real_escape_string($connection, $name);
+    $role = mysqli_real_escape_string($connection, $role);
     
-    try {
-        $stmt->execute([$name, $email, $hashedPassword, $role]);
+    $query = "INSERT INTO Users (name, email, password, role) VALUES ('$name', '$email', '$hashedPassword', '$role')";
+    
+    if (mysqli_query($connection, $query)) {
         return ['success' => true, 'message' => 'Registration successful'];
-    } catch (Exception $e) {
-        error_log("Registration Error: " . $e->getMessage());
+    } else {
         return ['success' => false, 'message' => 'Registration failed'];
     }
 }

@@ -2,15 +2,15 @@
 require_once __DIR__ . '/../includes/auth.php';
 requireAdmin();
 
-$pdo = getConnection();
+global $connection;
 
 // Get counts for dashboard stats
-$usersCount = $pdo->query("SELECT COUNT(*) FROM Users")->fetchColumn();
-$studentsCount = $pdo->query("SELECT COUNT(*) FROM Users WHERE Role = 'Student'")->fetchColumn();
-$messagesCount = $pdo->query("SELECT COUNT(*) FROM Contact_Messages")->fetchColumn();
-$reviewsCount = $pdo->query("SELECT COUNT(*) FROM Reviews")->fetchColumn();
-$groupsCount = $pdo->query("SELECT COUNT(*) FROM Groups")->fetchColumn();
-$subjectsCount = $pdo->query("SELECT COUNT(*) FROM Subjects")->fetchColumn();
+$usersCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Users"))[0];
+$studentsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Users WHERE Role = 'Student'"))[0];
+$messagesCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Contact_Messages"))[0];
+$reviewsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Reviews"))[0];
+$groupsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Groups"))[0];
+$subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FROM Subjects"))[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
