@@ -75,7 +75,7 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
             
             <div class="admin-nav">
                 <!-- Student 1 Tables -->
-                <a href="students.php" class="nav-card">
+                <a href="users.php" class="nav-card">
                     <div class="nav-icon">👥</div>
                     <div class="nav-info">
                         <h3>Users</h3>
