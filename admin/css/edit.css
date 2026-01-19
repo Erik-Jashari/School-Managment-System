@@ -1,0 +1,126 @@
+/* EDIT CONTAINER */
+.admin-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+}
+
+.editForm {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.editForm h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.editForm .subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'arial', sans-serif;
+}
+
+/* EDIT FORM */
+.editForm label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-family: 'arial', sans-serif;
+    color: #333;
+    display: block;
+}
+
+.editForm input,
+.editForm select,
+.editForm textarea {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.editForm input:focus,
+.editForm select:focus,
+.editForm textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.editForm input::placeholder,
+.editForm textarea::placeholder {
+    color: #aaa;
+}
+
+/* Submit Button */
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Links */
+.edit-links-text {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 15px;
+    color: #666;
+}
+
+.edit-links-text a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.edit-links-text a:hover {
+    text-decoration: underline;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: none;
+}
+
+/* Success Message */
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    display: none;
+}

@@ -1,6 +1,3 @@
--- School Management System - Seed Data
--- Run this AFTER schema.sql
-
 USE school_management_system;
 
 -- =============================================
