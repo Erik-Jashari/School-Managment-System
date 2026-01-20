@@ -10,6 +10,6 @@ $_SESSION['user_name'] = 'Admin User';
 $_SESSION['user_email'] = 'admin@school.com';
 $_SESSION['role'] = 'Admin';
 
-echo "✅ Logged in as Admin!<br><br>";
+echo "Logged in as Admin!<br><br>";
 echo "<a href='admin/index.php'>Go to Admin Dashboard →</a>";
 ?>

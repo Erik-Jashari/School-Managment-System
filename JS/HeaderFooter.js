@@ -7,14 +7,14 @@ const AppHeader = `
             <span></span>
         </button>
         <div class="page-links">
-            <a href="Index.html" class="links">Home</a>
-            <a href="About.html" class="links">About</a>
-            <a href="Contact.html" class="links">Contact</a>
-            <a href="Dashboard.html" class="links">Dashboard</a>
+            <a href="/School-Managment-System/Index.html" class="links">Home</a>
+            <a href="/School-Managment-System/About.html" class="links">About</a>
+            <a href="/School-Managment-System/Contact.html" class="links">Contact</a>
+            <a href="/School-Managment-System/Dashboard.html" class="links">Dashboard</a>
         </div>
         <div class="auth-links">
-            <a href="Teacher-Profile.html" class="links">Profile</a>
-            <a href="Login.html"><button class="login-button">Login</button></a>
+            <a href="/School-Managment-System/Teacher-Profile.html" class="links">Profile</a>
+            <a href="/School-Managment-System/Login.html"><button class="login-button">Login</button></a>
         </div>
     </nav>
 `;
@@ -22,7 +22,7 @@ const AppHeader = `
 const AppFooter = `
     <footer>
         <p>© 2025 School Management • All rights reserved</p>
-        <a class="admin-link" href="admin-login.html">Login as admin</a>
+        <a class="admin-link" href="/School-Managment-System/admin-login.html">Login as admin</a>
     </footer>
 `;
 

@@ -83,7 +83,7 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
                     </div>
                 </a>
                 
-                <a href="messages.php" class="nav-card">
+                <a href="contactMessages.php" class="nav-card">
                     <div class="nav-icon">✉️</div>
                     <div class="nav-info">
                         <h3>Messages</h3>

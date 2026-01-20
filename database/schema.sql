@@ -37,6 +37,9 @@ CREATE TABLE Contact_Messages(
     CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Shto nje kolone per te shenuar nese mesazhi eshte lexuar
+ALTER TABLE contact_messages ADD COLUMN IsRead TINYINT(1) DEFAULT 0;
+
 -- Tabela Student_Groups (Lidh studentet me grupet - Many-to-Many)
 
 CREATE TABLE Student_Groups(
