@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/users.css">
     <style>
+        /* Override alternating row colors */
+        tr:nth-child(even) {
+            background-color: white;
+        }
+        /* Highlight unread messages */
+        .unread-message {
+            background-color: #fff8e6 !important;
+        }
         .status-badge { 
             padding: 3px 8px; 
             border-radius: 4px; 
@@ -51,6 +59,7 @@
                     }
                     while($row = $result->fetch_assoc()){
                         $isRead = $row['IsRead'];
+                        $rowClass = $isRead ? 'read-message' : 'unread-message';
                         $statusBadge = $isRead 
                             ? '<span class="status-badge badge-read">Read</span>' 
                             : '<span class="status-badge badge-unread">Unread</span>';
@@ -59,7 +68,7 @@
                             : "<a href='markAsRead.php?CM_ID={$row['CM_ID']}&action=read'>Mark As Read</a>";
                         
                         echo "
-                            <tr>
+                            <tr class='{$rowClass}'>
                                 <td>{$row['CM_ID']}</td>
                                 <td>{$row['Name']}</td>
                                 <td>{$row['Email']}</td>
