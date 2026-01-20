@@ -1,0 +1,221 @@
+/* AUTH CONTAINER */
+.admin-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+}
+
+.auth-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-card h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.auth-card .subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: 'arial', sans-serif;
+}
+
+/* AUTH FORM */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-family: 'arial', sans-serif;
+    color: #333;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.auth-form input::placeholder {
+    color: #aaa;
+}
+
+.auth-form select {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    background-color: white;
+    cursor: pointer;
+}
+
+.auth-form select:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+/* Submit Button */
+.submit-button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Password Toggle */
+.password-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.password-wrapper input {
+    margin-bottom: 0;
+    padding-right: 60px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    color: #4CAF50;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 10px;
+    font-weight: bold;
+}
+
+.toggle-password:hover {
+    color: #45a049;
+}
+
+/* RESPONSIVE DESIGN */
+@media screen and (max-width: 768px) {
+    .admin-container {
+        padding: 20px 15px;
+    }
+
+    .auth-card {
+        padding: 30px 25px;
+        max-width: 100%;
+    }
+
+    .auth-card h1 {
+        font-size: 24px;
+    }
+
+    .auth-card .subtitle {
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .auth-form label {
+        font-size: 14px;
+    }
+
+    .auth-form input,
+    .auth-form select {
+        font-size: 14px;
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .submit-button {
+        font-size: 16px;
+        padding: 12px 18px;
+    }
+
+    .password-wrapper input {
+        padding-right: 60px;
+    }
+
+    .toggle-password {
+        font-size: 13px;
+        padding: 4px 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-container {
+        padding: 15px 10px;
+    }
+
+    .auth-card {
+        padding: 25px 20px;
+        border-radius: 8px;
+    }
+
+    .auth-card h1 {
+        font-size: 22px;
+    }
+
+    .auth-card .subtitle {
+        font-size: 13px;
+        margin-bottom: 20px;
+    }
+
+    .auth-form label {
+        font-size: 13px;
+    }
+
+    .auth-form input,
+    .auth-form select {
+        font-size: 13px;
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+
+    .submit-button {
+        font-size: 15px;
+        padding: 11px 16px;
+    }
+
+    .password-wrapper input {
+        padding-right: 60px;
+    }
+
+    .toggle-password {
+        font-size: 12px;
+        padding: 3px 6px;
+    }
+}

@@ -10,6 +10,10 @@
 <body>
     <div id="app-header"></div>
     <main class="admin-container">
+        <div class="header-actions">
+            <h1>Users Management</h1>
+            <a href='addUser.php' class='add-user-btn'>+ Shto User</a>
+        </div>
         <table border="1">
             <thead>
                 <tr>
@@ -27,7 +31,6 @@
 
                     $sql = "SELECT * FROM users";
                     $result = $connection->query($sql);
-
                     if(!$result){
                         die("Gabim gjate marrjes se te dhenave nga databaza");
                     }
