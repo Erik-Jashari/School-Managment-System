@@ -10,37 +10,32 @@ function togglePassword() {
     }
 }
 
-// Regex patterns for validation
+document.addEventListener('DOMContentLoaded', () => {
+    const errorMessage = document.getElementById('error-message');
+    const successMessage = document.getElementById('success-message');
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    const success = params.get('success');
 
-// Email: Validates format username@domain.extension (letters, numbers, dots, underscores, hyphens allowed)
-const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-// Password: Minimum 8 characters with at least one uppercase, one lowercase, one digit, and one special character (@$!%*?&)
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (error) {
+        errorMessage.textContent = decodeURIComponent(error);
+        errorMessage.style.display = 'block';
+    } else if (success) {
+        successMessage.textContent = decodeURIComponent(success);
+        successMessage.style.display = 'block';
+    }
+});
 
 document.getElementById('login-form').addEventListener('submit', function(e) {
     e.preventDefault();
-            
+
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value;
     const errorMessage = document.getElementById('error-message');
-    
-    // Validate email format
-    if(!emailRegex.test(email)) {
-        errorMessage.textContent = 'Please enter a valid email address';
-        errorMessage.style.display = 'block';
-        return;
-    }
-    
-    // Validate password strength
-    if(!passwordRegex.test(password)) {
-        errorMessage.textContent = 'Password must be at least 8 characters long and include uppercase, lowercase, number, and special character (@$!%*?&)';
-        errorMessage.style.display = 'block';
-        return;
-    }
-    
+    const successMessage = document.getElementById('success-message');
+
     errorMessage.style.display = 'none';
-    
-    // Login logic here
-    console.log('Login attempt:', { email, password });
+    successMessage.style.display = 'none';
+
+    e.target.submit();
 });

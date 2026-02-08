@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="CSS/Global.css">
+        <link rel="stylesheet" href="CSS/Global.css">
     <link rel="stylesheet" href="CSS/Login.css">
 </head>
 <body>
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="error-message" id="error-message"></div>
             <div class="success-message" id="success-message"></div>
 
-            <form class="auth-form" id="login-form" action="/School-Managment-System/Login.php" method="post" novalidate>
+            <form class="auth-form" id="login-form" action="login.php" method="post" novalidate>
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <!-- Footer -->
-    <div id="app-footer"></div>
+     <div id="app-footer"></div>
 
     <script src="JS/HeaderFooter.js"></script>
     <script src="JS/Login.js"></script>

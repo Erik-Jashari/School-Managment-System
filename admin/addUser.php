@@ -110,5 +110,6 @@
             }
         }
     </script>
+    <script src="../JS/Auth.js"></script>
 </body>
 </html>

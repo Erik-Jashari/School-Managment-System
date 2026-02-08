@@ -13,8 +13,9 @@ const AppHeader = `
             <a href="/School-Managment-System/Dashboard.html" class="links">Dashboard</a>
         </div>
         <div class="auth-links">
-            <a href="/School-Managment-System/Teacher-Profile.html" class="links">Profile</a>
-            <a href="/School-Managment-System/Login.html"><button class="login-button">Login</button></a>
+            <a href="/School-Managment-System/Teacher-Profile.html" class="links" data-auth="logged-in" style="display: none;">Profile</a>
+            <a href="/School-Managment-System/Login.php" data-auth="logged-out" style="display: none;"><button class="login-button">Login</button></a>
+            <a href="/School-Managment-System/includes/logout.php" class="links" data-auth="logged-in" style="display: none;">Logout</a>
         </div>
     </nav>
 `;
@@ -22,7 +23,6 @@ const AppHeader = `
 const AppFooter = `
     <footer>
         <p>© 2025 School Management • All rights reserved</p>
-        <a class="admin-link" href="/School-Managment-System/admin-login.html">Login as admin</a>
     </footer>
 `;
 
@@ -34,12 +34,49 @@ function loadSharedComponents() {
         headerContainer.innerHTML = AppHeader;
         highlightActiveLink(); // Run helper to bold the current page
         setupMobileMenu(); // initialize hamburger behaviour
+        updateAuthLinks(); // show login/logout based on session
     }
 
     const footerContainer = document.getElementById('app-footer');
     if (footerContainer) {
         footerContainer.innerHTML = AppFooter;
     }
+}
+
+function updateAuthLinks() {
+    const loggedInEls = document.querySelectorAll('[data-auth="logged-in"]');
+    const loggedOutEls = document.querySelectorAll('[data-auth="logged-out"]');
+
+    const showLoggedIn = () => {
+        loggedInEls.forEach(el => {
+            el.style.display = '';
+        });
+        loggedOutEls.forEach(el => {
+            el.style.display = 'none';
+        });
+    };
+
+    const showLoggedOut = () => {
+        loggedInEls.forEach(el => {
+            el.style.display = 'none';
+        });
+        loggedOutEls.forEach(el => {
+            el.style.display = '';
+        });
+    };
+
+    fetch('/School-Managment-System/includes/checkAuth.php', { credentials: 'include' })
+        .then(response => response.json())
+        .then(data => {
+            if (data && data.isLoggedIn) {
+                showLoggedIn();
+            } else {
+                showLoggedOut();
+            }
+        })
+        .catch(() => {
+            showLoggedOut();
+        });
 }
 
 function highlightActiveLink() {

@@ -101,5 +101,6 @@
     </main>
     <div id="app-footer"></div>
     <script src="../JS/HeaderFooter.js"></script>
+    <script src="../JS/Auth.js"></script>
 </body>
 </html>

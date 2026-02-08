@@ -32,7 +32,6 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
                 <h1>Admin Dashboard</h1>
                 <p class="welcome-text">Welcome back, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
             </div>
-            <a href="../includes/logout.php" class="btn btn-secondary">Logout</a>
         </div>
 
         <!-- Stats Cards -->
@@ -155,5 +154,6 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
 
     <div id="app-footer"></div>
     <script src="../JS/HeaderFooter.js"></script>
+    <script src="../JS/Auth.js"></script>
 </body>
 </html>

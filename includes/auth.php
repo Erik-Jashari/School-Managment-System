@@ -24,7 +24,7 @@ function login($email, $password) {
     global $connection;
     
     $email = mysqli_real_escape_string($connection, $email);
-    $query = "SELECT id, name, email, password, role FROM Users WHERE email = '$email'";
+    $query = "SELECT UsersID AS id, Name AS name, Email AS email, Password AS password, Role AS role FROM Users WHERE Email = '$email'";
     $result = mysqli_query($connection, $query);
     $user = mysqli_fetch_assoc($result);
     
@@ -44,22 +44,30 @@ function login($email, $password) {
 function logout() {
     $_SESSION = [];
     session_destroy();
-    header("Location: /School-Managment-System/Login.html");
+        header("Location: /School-Managment-System/Login.php");
     exit;
 }
 
 // ========== PAGE PROTECTION FUNCTIONS ==========
 
+function sendNoCacheHeaders() {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+}
+
 function requireLogin() {
+    sendNoCacheHeaders();
     if (!isLoggedIn()) {
-        header("Location: /School-Managment-System/Login.html");
+           header("Location: /School-Managment-System/Login.php");
         exit;
     }
 }
 
 function requireAdmin() {
+    sendNoCacheHeaders();
     if (!isLoggedIn()) {
-        header("Location: /School-Managment-System/Login.html");
+            header("Location: /School-Managment-System/Login.php");
         exit;
     }
     if (!isAdmin()) {
@@ -69,8 +77,9 @@ function requireAdmin() {
 }
 
 function requireStudent() {
+    sendNoCacheHeaders();
     if (!isLoggedIn()) {
-        header("Location: /School-Managment-System/Login.html");
+            header("Location: /School-Managment-System/Login.php");
         exit;
     }
     if (!isStudent()) {
@@ -98,7 +107,7 @@ function register($name, $email, $password, $role = 'Student') {
     $name = mysqli_real_escape_string($connection, $name);
     $role = mysqli_real_escape_string($connection, $role);
     
-    $query = "INSERT INTO Users (name, email, password, role) VALUES ('$name', '$email', '$hashedPassword', '$role')";
+    $query = "INSERT INTO Users (Name, Email, Password, Role) VALUES ('$name', '$email', '$hashedPassword', '$role')";
     
     if (mysqli_query($connection, $query)) {
         return ['success' => true, 'message' => 'Registration successful'];
