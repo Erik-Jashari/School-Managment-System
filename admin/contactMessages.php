@@ -6,29 +6,7 @@
     <title>Contact Messages</title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/users.css">
-    <style>
-        /* Override alternating row colors */
-        tr:nth-child(even) {
-            background-color: white;
-        }
-        /* Highlight unread messages */
-        .unread-message {
-            background-color: #fff8e6 !important;
-        }
-        .status-badge { 
-            padding: 3px 8px; 
-            border-radius: 4px; 
-            font-size: 12px; 
-            color: white;
-        }
-        .badge-read { 
-            background-color: #28a745; 
-        }
-        .badge-unread { 
-            background-color: #ffc107; 
-            color: black; 
-        }
-    </style>
+    <link rel="stylesheet" href="css/contactMessages.css">
 </head>
 <body>
     <div id="app-header"></div>
@@ -66,6 +44,7 @@
                         $toggleLink = $isRead 
                             ? "<a href='markAsRead.php?CM_ID={$row['CM_ID']}&action=unread'>Mark As Unread</a>"
                             : "<a href='markAsRead.php?CM_ID={$row['CM_ID']}&action=read'>Mark As Read</a>";
+                        $deleteLink = "<a href='delete.php?CM_ID={$row['CM_ID']}' onclick=\"return confirm('Are you sure you want to delete this message?');\">Delete</a>";
                         
                         echo "
                             <tr class='{$rowClass}'>
@@ -75,7 +54,7 @@
                                 <td>{$row['Message']}</td>
                                 <td>{$row['CreatedAt']}</td>
                                 <td>{$statusBadge}</td>
-                                <td>{$toggleLink}</td>
+                                <td>{$toggleLink} {$deleteLink}</td>
                             </tr>
                         ";
                     }

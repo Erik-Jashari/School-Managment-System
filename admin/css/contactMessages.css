@@ -1,0 +1,23 @@
+tr:nth-child(even) {
+    background-color: white;
+}
+
+.unread-message {
+    background-color: #fff8e6 !important;
+}
+
+.status-badge {
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: white;
+}
+
+.badge-read {
+    background-color: #28a745;
+}
+
+.badge-unread {
+    background-color: #ffc107;
+    color: black;
+}

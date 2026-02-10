@@ -1,6 +1,9 @@
 <?php
 // AUTH.PHP - Authentication & Session Management
 
+// Configure session settings to prevent premature timeout
+ini_set('session.gc_maxlifetime', 3600); // 1 hour session lifetime
+ini_set('session.cookie_lifetime', 0); // Cookie expires when browser closes
 session_start();
 require_once __DIR__ . '/../config/database.php';
 
