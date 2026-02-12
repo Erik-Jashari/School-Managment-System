@@ -147,6 +147,13 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
                         <p>View submissions</p>
                     </div>
                 </a>
+                <a href="adminDashboard.php" class="nav-card">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-info">
+                        <h3>Analytics</h3>
+                        <p>View student analytics</p>
+                    </div>
+                </a>
             </div>
         </div>
 

@@ -10,7 +10,7 @@ const AppHeader = `
             <a href="/School-Managment-System/Index.html" class="links">Home</a>
             <a href="/School-Managment-System/About.html" class="links">About</a>
             <a href="/School-Managment-System/Contact.php" class="links">Contact</a>
-            <a href="/School-Managment-System/Dashboard.html" class="links">Dashboard</a>
+            <a href="/School-Managment-System/Dashboard.php" class="links">Dashboard</a>
         </div>
         <div class="auth-links">
             <a href="/School-Managment-System/Teacher-Profile.html" class="links" data-auth="logged-in" style="display: none;">Profile</a>
