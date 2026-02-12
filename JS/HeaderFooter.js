@@ -13,7 +13,7 @@ const AppHeader = `
             <a href="/School-Managment-System/Dashboard.html" class="links">Dashboard</a>
         </div>
         <div class="auth-links">
-            <a href="/School-Managment-System/Teacher-Profile.html" class="links" data-auth="logged-in" style="display: none;">Profile</a>
+            <a href="/School-Managment-System/Student-Profile.php" class="links" data-auth="logged-in" style="display: none;">Profile</a>
             <a href="/School-Managment-System/Login.php" data-auth="logged-out" style="display: none;"><button class="login-button">Login</button></a>
             <a href="/School-Managment-System/includes/logout.php" class="links" data-auth="logged-in" style="display: none;">Logout</a>
         </div>

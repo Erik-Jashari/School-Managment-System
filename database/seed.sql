@@ -2,7 +2,7 @@ USE school_management_system;
 
 -- =============================================
 -- USERS (1 Admin + 10 Students)
--- Password for all: "Test123!" (hashed with PHP password_hash)
+-- Password for all: "password" (hashed with PHP password_hash)
 -- =============================================
 
 INSERT INTO Users (Name, Email, Password, Role) VALUES
