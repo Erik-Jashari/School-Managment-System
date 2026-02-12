@@ -1,6 +1,23 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
 
+// Prevent caching of login page
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+// Redirect if already logged in
+if (isset($_SESSION['user_id'])) {
+    $role = isset($_SESSION['role']) ? $_SESSION['role'] : '';
+    if ($role === 'Admin') {
+        header('Location: /School-Managment-System/admin/index.php');
+        exit;
+    } else {
+        header('Location: /School-Managment-System/Student-Profile.php');
+        exit;
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = isset($_POST['email']) ? trim($_POST['email']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
