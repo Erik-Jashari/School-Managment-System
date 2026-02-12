@@ -45,6 +45,17 @@
     font-family: 'arial', sans-serif;
 }
 
+.contact-status{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 12px 16px;
+    margin: 10px 0 18px;
+    border-radius: 8px;
+    background-color: rgba(192, 227, 193, 0.2);
+    border: 2px solid #c2e8c3;
+    color: #ffffff;
+}
+
 /* FORM */
 .contact-form{
     display: flex;

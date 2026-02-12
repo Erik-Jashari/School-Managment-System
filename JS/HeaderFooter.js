@@ -9,7 +9,7 @@ const AppHeader = `
         <div class="page-links">
             <a href="/School-Managment-System/Index.html" class="links">Home</a>
             <a href="/School-Managment-System/About.html" class="links">About</a>
-            <a href="/School-Managment-System/Contact.html" class="links">Contact</a>
+            <a href="/School-Managment-System/Contact.php" class="links">Contact</a>
             <a href="/School-Managment-System/Dashboard.html" class="links">Dashboard</a>
         </div>
         <div class="auth-links">

@@ -16,36 +16,6 @@
             white-space: normal;
             overflow: visible;
         }
-        .filter-bar {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-bottom: 1.25rem;
-            flex-wrap: wrap;
-        }
-        .filter-bar select {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ccc;
-            border-radius: 0.5rem;
-            font-size: 0.9rem;
-            background-color: white;
-            cursor: pointer;
-        }
-        .filter-bar select:focus {
-            outline: none;
-            border-color: #4CAF50;
-        }
-        .avg-rating {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
-            font-weight: 600;
-            color: #333;
-        }
         .no-reviews {
             text-align: center;
             padding: 2rem;

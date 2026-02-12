@@ -1,3 +1,23 @@
+<?php
+include '../config/database.php';
+
+if (isset($_GET['CM_ID'], $_GET['action'])) {
+    $id = (int)$_GET['CM_ID'];
+    $action = $_GET['action'];
+
+    $isRead = ($action === 'read') ? 1 : 0;
+
+    $stmt = $connection->prepare('UPDATE contact_messages SET IsRead = ? WHERE CM_ID = ?');
+    if ($stmt) {
+        $stmt->bind_param('ii', $isRead, $id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    header('Location: contactMessages.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,8 +48,6 @@
             </thead>
             <tbody>
                 <?php 
-                    include '../config/database.php';
-
                     $sql = "SELECT * FROM contact_messages ORDER BY IsRead ASC, CreatedAt DESC";
                     $result = $connection->query($sql);
                     if(!$result){
@@ -42,8 +60,8 @@
                             ? '<span class="status-badge badge-read">Read</span>' 
                             : '<span class="status-badge badge-unread">Unread</span>';
                         $toggleLink = $isRead 
-                            ? "<a href='markAsRead.php?CM_ID={$row['CM_ID']}&action=unread'>Mark As Unread</a>"
-                            : "<a href='markAsRead.php?CM_ID={$row['CM_ID']}&action=read'>Mark As Read</a>";
+                            ? "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=unread'>Mark As Unread</a>"
+                            : "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=read'>Mark As Read</a>";
                         $deleteLink = "<a href='delete.php?CM_ID={$row['CM_ID']}' onclick=\"return confirm('Are you sure you want to delete this message?');\">Delete</a>";
                         
                         echo "
