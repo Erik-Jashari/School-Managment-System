@@ -24,10 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Location: /School-Managment-System/admin/index.php');
         exit;
     } else if ($role === 'Student') {
-        header('Location: /School-Managment-System/Profile.html');
+        header('Location: /School-Managment-System/Student-Profile.php');
+        exit;
+    } else {
+        header('Location: /School-Managment-System/Login.php?error=' . urlencode('Unknown role. Please contact an administrator.'));
         exit;
     }
-    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -54,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="error-message" id="error-message"></div>
             <div class="success-message" id="success-message"></div>
 
-            <form class="auth-form" id="login-form" action="login.php" method="post" novalidate>
+            <form class="auth-form" id="login-form" action="Login.php" method="post" novalidate>
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
@@ -94,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <p class="auth-links-text">
-                Don't have an account? <a href="Register.html">Sign Up</a>
+                Don't have an account? Contact your school administrator.
             </p>
         </div>
     </div>
