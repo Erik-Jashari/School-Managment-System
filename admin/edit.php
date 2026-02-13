@@ -289,18 +289,18 @@
                     <button type="submit" class="submit-button">Update User</button>
                 <?php elseif ($entityType === 'group'): ?>
                     <label for="groupName">Group Name</label>
-                    <input type="text" id="groupName" name="groupName" value="<?php echo htmlspecialchars($groupName); ?>" placeholder="Enter group name (e.g., Class 10-A)">
+                    <input type="text" id="groupName" name="groupName" value="<?php echo htmlspecialchars($groupName); ?>" placeholder="Enter group name">
 
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Enter group description (optional)" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
+                    <textarea id="description" name="description" placeholder="Enter group description" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
 
                     <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Group' : 'Update Group'; ?></button>
                 <?php elseif ($entityType === 'subject'): ?>
                     <label for="subjectName">Subject Name</label>
-                    <input type="text" id="subjectName" name="subjectName" value="<?php echo htmlspecialchars($subjectName); ?>" placeholder="Enter subject name (e.g., Mathematics)">
+                    <input type="text" id="subjectName" name="subjectName" value="<?php echo htmlspecialchars($subjectName); ?>" placeholder="Enter subject name">
 
                     <label for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Enter subject description (optional)" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
+                    <textarea id="description" name="description" placeholder="Enter subject description" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
 
                     <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Subject' : 'Update Subject'; ?></button>
                 <?php endif; ?>
