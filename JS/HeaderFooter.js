@@ -22,7 +22,7 @@ const AppHeader = `
 
 const AppFooter = `
     <footer>
-        <p>© 2025 School Management • All rights reserved</p>
+        <p>© 2026 School Management • All rights reserved</p>
     </footer>
 `;
 
