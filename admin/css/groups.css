@@ -1,0 +1,96 @@
+/* Groups Management Styling */
+
+.no-data {
+    text-align: center;
+    color: #999;
+    padding: 2rem !important;
+    font-style: italic;
+}
+
+.no-data a {
+    color: #4CAF50;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 0.5rem;
+}
+
+.no-data a:hover {
+    text-decoration: underline;
+}
+
+.description-cell {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.description-cell:hover {
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    background-color: #fff9c4;
+    padding: 0.75rem 0.9375rem;
+}
+
+.student-count {
+    text-align: center;
+    font-weight: 600;
+    color: #2196F3;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background-color: #2196F3;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #0b7dda;
+    box-shadow: 0 0.25rem 0.5rem rgba(33, 150, 243, 0.3);
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #da190b;
+    box-shadow: 0 0.25rem 0.5rem rgba(244, 67, 54, 0.3);
+}
+
+@media (max-width: 768px) {
+    .actions-cell {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        width: 100%;
+        text-align: center;
+    }
+
+    .description-cell {
+        max-width: 150px;
+    }
+}

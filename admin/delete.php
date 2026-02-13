@@ -19,6 +19,12 @@
         $sql = "DELETE FROM Reviews WHERE ReviewsID=$id";
         $connection->query($sql);
         header("Location: reviews.php");
+    } elseif (isset($_GET['GroupID'])) {
+        $id = $_GET['GroupID'];
+
+        $sql = "DELETE FROM Groups WHERE GroupID=$id";
+        $connection->query($sql);
+        header("Location: groups.php");
     }
 
     exit;
