@@ -22,7 +22,7 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - School Management System</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
@@ -86,7 +86,13 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
                         <p>Manage all users</p>
                     </div>
                 </a>
-                
+                <a href="adminDashboard.php" class="nav-card">
+                    <div class="nav-icon">📊</div>
+                    <div class="nav-info">
+                        <h3>Analytics</h3>
+                        <p>View student analytics</p>
+                    </div>
+                </a>
                 <a href="contactMessages.php" class="nav-card">
                     <div class="nav-icon">✉️</div>
                     <div class="nav-info">
@@ -150,13 +156,6 @@ $subjectsCount = mysqli_fetch_row(mysqli_query($connection, "SELECT COUNT(*) FRO
                     <div class="nav-info">
                         <h3>Submissions</h3>
                         <p>View submissions</p>
-                    </div>
-                </a>
-                <a href="adminDashboard.php" class="nav-card">
-                    <div class="nav-icon">📊</div>
-                    <div class="nav-info">
-                        <h3>Analytics</h3>
-                        <p>View student analytics</p>
                     </div>
                 </a>
             </div>

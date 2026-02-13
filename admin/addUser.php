@@ -5,15 +5,24 @@
     $email = "";
     $password = "";
     $role = "";
+    $groupId = "";
 
     $errorMessage = "";
     $successMessage = "";
+
+    // Fetch all groups for the dropdown
+    $groupsResult = $connection->query("SELECT GroupID, GroupName FROM Groups ORDER BY GroupName ASC");
+    $groups = [];
+    while ($g = $groupsResult->fetch_assoc()) {
+        $groups[] = $g;
+    }
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $name = $_POST['Name'];
         $email = $_POST['Email'];
         $password = $_POST['Password'];
         $role = $_POST['Role'];
+        $groupId = isset($_POST['GroupID']) ? $_POST['GroupID'] : '';
 
         if(empty($name) || empty($email) || empty($password) || empty($role)){
             $errorMessage = "Te gjitha fushat duhet te plotesohen";
@@ -26,11 +35,24 @@
             if(!$result){
                 $errorMessage = "Gabim ne shtimin e userit: " . $connection->error;
             }else{
+                // Get the newly inserted user's ID
+                $newUserId = $connection->insert_id;
+                
+                // If a group was selected, add user to that group
+                if(!empty($groupId)){
+                    $groupId = (int)$groupId;
+                    $stmt = $connection->prepare("INSERT INTO Student_Groups (UsersID, GroupID) VALUES (?, ?)");
+                    $stmt->bind_param('ii', $newUserId, $groupId);
+                    $stmt->execute();
+                    $stmt->close();
+                }
+                
                 //pastroni fushat dhe vendosni mesazhin per sukses
                 $name = "";
                 $email = "";
                 $password = "";
                 $role = "";
+                $groupId = "";
 
                 $successMessage = "Useri u regjistrua me sukses";
                 header("Location: users.php");
@@ -87,6 +109,16 @@
                     <option value="" <?php echo empty($role) ? 'selected' : ''; ?>>Select a role</option>
                     <option value="Student" <?php echo ($role == 'Student') ? 'selected' : ''; ?>>Student</option>
                     <option value="Admin" <?php echo ($role == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                </select>
+
+                <label for="GroupID">Class/Group</label>
+                <select id="GroupID" name="GroupID">
+                    <option value="">No class assigned</option>
+                    <?php foreach($groups as $g): ?>
+                        <option value="<?php echo $g['GroupID']; ?>" <?php echo ($groupId == $g['GroupID']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($g['GroupName']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
                 <button type="submit" class="submit-button">Create User</button>

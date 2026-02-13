@@ -94,9 +94,9 @@
     display:inline-block;
     padding:14px 24px;
     border-radius:10px;
-    background:linear-gradient(90deg,#245bb1,#3ea0ff);
+    background:linear-gradient(90deg,#4CAF50,#21d81e);
     color:white;
-    text-decoration:none;
+    text-decoration:none;   
     font-weight:800;
     box-shadow:0 12px 30px rgba(36,91,177,0.28);
     min-width:180px;
@@ -115,7 +115,7 @@
     color:#245bb1;
     border:2px solid rgba(36,91,177,0.12);
     font-weight:800;
-    box-shadow:0 8px 20px rgba(36,91,177,0.08);
+    box-shadow:0 8px 20px #4CAF50;
     min-width:180px;
 }
 .btn-secondary:hover{

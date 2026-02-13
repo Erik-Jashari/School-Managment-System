@@ -111,21 +111,6 @@
      align-items: center;
     margin-bottom: 1.5rem; 
 }
-.action-btn {
-    background: #1a73e8;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-.action-btn.secondary { 
-    background: white; 
-    border: 1px solid #ddd; 
-    color: #555; 
-    margin-right: 10px; 
-}
 
 /* Table Styling */
 .student-table { 
@@ -155,27 +140,13 @@
     background: #e6f4ea; 
     color: #1e8e3e; 
 }
-/* Attendance Toggle */
-.attendance-toggle {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    display: inline-block;
-    background: #f3f3f3; 
-    color: #999;
+.grade-b { 
+    background: #fff4e5; 
+    color: #d17e00; 
 }
-.attendance-toggle.present {
-    background: #e6f4ea; 
-    color: #1e8e3e;
-}
-.attendance-toggle.absent {
-    background: #fce8e6; 
-    color: #d93025;
-}
-.attendance-toggle.not-available {
-    background: #f3f3f3; 
-    color: #999;
+.grade-c { 
+    background: #fff0f0; 
+    color: #d93025; 
 }
 
 /* Responsive Design */

@@ -44,14 +44,10 @@
     text-decoration: none;
 }
 
-.period-item:hover { 
-    background-color: #f0f4ff; 
-    color: #1a73e8; 
-}
 .period-item.active { 
     background-color: #e8f0fe; 
-    color: #1a73e8; 
-    border-left: 4px solid #1a73e8; 
+    color: #3573c5; 
+    border-left: 4px solid #277dee; 
 }
 
 /* Main Dashboard Area */
@@ -125,8 +121,8 @@
 .student-table th { 
     text-align: left; 
     padding: 16px 20px; 
-    color: #666;
-    font-size: 0.95rem;
+    color: #3b3a3a;
+    font-size: 1.1rem;
     border-bottom: 2px solid #eee;
     width: 50%;
 }
@@ -134,7 +130,8 @@
     padding: 16px 20px; 
     border-bottom: 1px solid #eee; 
     color: #333; 
-}     
+    font-size: 0.75rem;
+}
 
 /* Responsive Design */
 

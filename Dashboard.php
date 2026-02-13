@@ -1,17 +1,60 @@
 <?php
-require_once __DIR__ . '/config/database.php';
+require_once __DIR__ . '/includes/auth.php';
+
+// Require user to be logged in
+requireLogin();
+
+// Get logged in user info
+$userId = $_SESSION['user_id'];
+$userRole = $_SESSION['role'];
 
 // Get selected group (default to first group)
 $selectedGroup = isset($_GET['group']) ? (int)$_GET['group'] : 0;
 
-// Fetch all groups for sidebar
-$groupsResult = $connection->query("SELECT GroupID, GroupName FROM Groups ORDER BY GroupName ASC");
+// Fetch groups for sidebar based on user role
 $groups = [];
-while ($g = $groupsResult->fetch_assoc()) {
-    $groups[] = $g;
+if ($userRole === 'Admin') {
+    // Admins see all groups
+    $groupsResult = $connection->query("SELECT GroupID, GroupName FROM Groups ORDER BY GroupName ASC");
+    while ($g = $groupsResult->fetch_assoc()) {
+        $groups[] = $g;
+    }
+} else {
+    // Students see only their assigned groups
+    $stmt = $connection->prepare("
+        SELECT g.GroupID, g.GroupName 
+        FROM Groups g
+        JOIN Student_Groups sg ON g.GroupID = sg.GroupID
+        WHERE sg.UsersID = ?
+        ORDER BY g.GroupName ASC
+    ");
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $groupsResult = $stmt->get_result();
+    while ($g = $groupsResult->fetch_assoc()) {
+        $groups[] = $g;
+    }
+    $stmt->close();
 }
+
 if ($selectedGroup === 0 && count($groups) > 0) {
     $selectedGroup = (int)$groups[0]['GroupID'];
+}
+
+// Verify user has access to the selected group (for students)
+if ($userRole !== 'Admin' && $selectedGroup > 0) {
+    $hasAccess = false;
+    foreach ($groups as $g) {
+        if ((int)$g['GroupID'] === $selectedGroup) {
+            $hasAccess = true;
+            break;
+        }
+    }
+    if (!$hasAccess && count($groups) > 0) {
+        $selectedGroup = (int)$groups[0]['GroupID'];
+    } elseif (!$hasAccess) {
+        $selectedGroup = 0;
+    }
 }
 
 // Get current group name
@@ -89,16 +132,14 @@ function getLetterGrade($pct) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Class Manager</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="CSS/Global.css">
     <link rel="stylesheet" href="CSS/Dashboard.css">
 </head>
 <body>
     <!-- Navigation Bar -->
     <div id="app-header"></div>
-
     <main class="dashboard-container">
-        
         <aside class="class-sidebar">
             <h3>Groups</h3>
             <ul class="period-list">
@@ -163,10 +204,10 @@ function getLetterGrade($pct) {
                             $attClass = $todayAtt === 'N/A' ? 'not-available' : strtolower($todayAtt);
                         ?>
                         <tr>
-                            <td data-label="Student Name">
+                            <td data-label="student-name">
                                 <strong><?php echo htmlspecialchars($student['Name']); ?></strong>
                             </td>
-                            <td data-label="Today's Attendance">
+                            <td data-label="today-attendance">
                                 <span class="attendance toggle <?php echo $attClass; ?>"><?php echo $todayAtt; ?></span>
                             </td>
                         </tr>

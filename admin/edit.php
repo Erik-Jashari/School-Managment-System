@@ -11,6 +11,13 @@
 
     $id = $_GET['UsersID'];
 
+    // Fetch all groups for the dropdown
+    $groupsResult = $connection->query("SELECT GroupID, GroupName FROM Groups ORDER BY GroupName ASC");
+    $groups = [];
+    while ($g = $groupsResult->fetch_assoc()) {
+        $groups[] = $g;
+    }
+
     // Merr të dhënat ekzistuese të klientit
 
     $sql = "SELECT * FROM users WHERE UsersID=$id";
@@ -25,11 +32,23 @@
     $email = $client['Email'];
     $role = $client['Role'];
 
+    // Get current group assignment
+    $currentGroupId = '';
+    $groupStmt = $connection->prepare("SELECT GroupID FROM Student_Groups WHERE UsersID = ? LIMIT 1");
+    $groupStmt->bind_param('i', $id);
+    $groupStmt->execute();
+    $groupResult = $groupStmt->get_result();
+    if ($groupRow = $groupResult->fetch_assoc()) {
+        $currentGroupId = $groupRow['GroupID'];
+    }
+    $groupStmt->close();
+
     // Kontrollo nëse forma u dërgua (POST)
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $role = $_POST['role'];
+        $newGroupId = isset($_POST['groupId']) ? $_POST['groupId'] : '';
 
         //Validimi
         if(empty($name) || empty($email) || empty($role)){
@@ -45,6 +64,22 @@
             if (!$result) {
                 $errorMessage = "Gabim gjatë përditësimit të klientit: " . $connection->error;
             } else {
+                // Update group assignment
+                // First, remove existing group assignment
+                $deleteStmt = $connection->prepare("DELETE FROM Student_Groups WHERE UsersID = ?");
+                $deleteStmt->bind_param('i', $id);
+                $deleteStmt->execute();
+                $deleteStmt->close();
+                
+                // If a new group is selected, add the assignment
+                if(!empty($newGroupId)){
+                    $newGroupId = (int)$newGroupId;
+                    $insertStmt = $connection->prepare("INSERT INTO Student_Groups (UsersID, GroupID) VALUES (?, ?)");
+                    $insertStmt->bind_param('ii', $id, $newGroupId);
+                    $insertStmt->execute();
+                    $insertStmt->close();
+                }
+                
                 $successMessage = "Klienti u përditësua me sukses!";
                 header("Location: users.php");
                 exit;
@@ -89,6 +124,16 @@
                 <select id="role" name="role">
                     <option value="Student" <?php echo ($role == 'Student') ? 'selected' : ''; ?>>Student</option>
                     <option value="Admin" <?php echo ($role == 'Admin') ? 'selected' : ''; ?>>Admin</option>
+                </select>
+
+                <label for="groupId">Class/Group</label>
+                <select id="groupId" name="groupId">
+                    <option value="">No class assigned</option>
+                    <?php foreach($groups as $g): ?>
+                        <option value="<?php echo $g['GroupID']; ?>" <?php echo ($currentGroupId == $g['GroupID']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($g['GroupName']); ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
 
                 <button type="submit" class="submit-button">Update User</button>
