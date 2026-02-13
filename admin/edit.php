@@ -11,6 +11,9 @@
     } elseif (isset($_GET['GroupID'])) {
         $id = $_GET['GroupID'];
         $entityType = 'group';
+    } elseif (isset($_GET['SubjectID'])) {
+        $id = $_GET['SubjectID'];
+        $entityType = 'subject';
     } else {
         header("Location: users.php");
         exit;
@@ -160,6 +163,77 @@
                 }
             }
         }
+    } elseif ($entityType === 'subject') {
+        // Handle new subject creation
+        if ($id === 'new') {
+            $subjectName = '';
+            $description = '';
+            
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $subjectName = $_POST['subjectName'] ?? '';
+                $description = $_POST['description'] ?? '';
+
+                // Validation
+                if(empty($subjectName)){
+                    $errorMessage = "Subject name is required";
+                } else {
+                    // Insert new subject
+                    $subjectName = $connection->real_escape_string($subjectName);
+                    $description = $connection->real_escape_string($description);
+                    $sql = "INSERT INTO Subjects (Name, Description) VALUES ('$subjectName', '$description')";
+
+                    $result = $connection->query($sql);
+
+                    if (!$result) {
+                        $errorMessage = "Error creating subject: " . $connection->error;
+                    } else {
+                        $successMessage = "Subject created successfully!";
+                        header("Location: subjects.php");
+                        exit;
+                    }
+                }
+            }
+        } else {
+            // Get existing subject data
+            $sql = "SELECT * FROM Subjects WHERE SubjectID=$id";
+            $result = $connection->query($sql);
+
+            if (!$result || $result->num_rows == 0) {
+                die("Subject does not exist.");
+            }
+
+            $subject = $result->fetch_assoc();
+            $subjectName = $subject['Name'];
+            $description = $subject['Description'];
+
+            // Handle form submission
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $subjectName = $_POST['subjectName'] ?? '';
+                $description = $_POST['description'] ?? '';
+
+                // Validation
+                if(empty($subjectName)){
+                    $errorMessage = "Subject name is required";
+                } else {
+                    // Update subject
+                    $subjectName = $connection->real_escape_string($subjectName);
+                    $description = $connection->real_escape_string($description);
+                    $sql = "UPDATE Subjects 
+                            SET Name='$subjectName', Description='$description' 
+                            WHERE SubjectID=$id";
+
+                    $result = $connection->query($sql);
+
+                    if (!$result) {
+                        $errorMessage = "Error updating subject: " . $connection->error;
+                    } else {
+                        $successMessage = "Subject updated successfully!";
+                        header("Location: subjects.php");
+                        exit;
+                    }
+                }
+            }
+        }
     }
 ?>
 
@@ -168,7 +242,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $entityType === 'user' ? 'Edit User' : ($id === 'new' ? 'Create Group' : 'Edit Group'); ?></title>
+    <title><?php echo $entityType === 'user' ? 'Edit User' : ($entityType === 'group' ? ($id === 'new' ? 'Create Group' : 'Edit Group') : ($id === 'new' ? 'Create Subject' : 'Edit Subject')); ?></title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/edit.css">
 </head>
@@ -176,8 +250,8 @@
     <div id="app-header"></div>
     <main class="admin-container">
         <div class="editForm">
-            <h1><?php echo $entityType === 'user' ? 'Edit User' : ($id === 'new' ? 'Create Group' : 'Edit Group'); ?></h1>
-            <p class="subtitle"><?php echo $entityType === 'user' ? 'Update user information' : ($id === 'new' ? 'Add a new group to the system' : 'Update group information'); ?></p>
+            <h1><?php echo $entityType === 'user' ? 'Edit User' : ($entityType === 'group' ? ($id === 'new' ? 'Create Group' : 'Edit Group') : ($id === 'new' ? 'Create Subject' : 'Edit Subject')); ?></h1>
+            <p class="subtitle"><?php echo $entityType === 'user' ? 'Update user information' : ($entityType === 'group' ? ($id === 'new' ? 'Add a new group to the system' : 'Update group information') : ($id === 'new' ? 'Add a new subject to the system' : 'Update subject information')); ?></p>
             
             <?php 
                 if(!empty($errorMessage)){
@@ -213,7 +287,7 @@
                     </select>
 
                     <button type="submit" class="submit-button">Update User</button>
-                <?php else: ?>
+                <?php elseif ($entityType === 'group'): ?>
                     <label for="groupName">Group Name</label>
                     <input type="text" id="groupName" name="groupName" value="<?php echo htmlspecialchars($groupName); ?>" placeholder="Enter group name (e.g., Class 10-A)">
 
@@ -221,11 +295,19 @@
                     <textarea id="description" name="description" placeholder="Enter group description (optional)" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
 
                     <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Group' : 'Update Group'; ?></button>
+                <?php elseif ($entityType === 'subject'): ?>
+                    <label for="subjectName">Subject Name</label>
+                    <input type="text" id="subjectName" name="subjectName" value="<?php echo htmlspecialchars($subjectName); ?>" placeholder="Enter subject name (e.g., Mathematics)">
+
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Enter subject description (optional)" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
+
+                    <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Subject' : 'Update Subject'; ?></button>
                 <?php endif; ?>
             </form>
             
             <div class="edit-links-text">
-                <a href="<?php echo $entityType === 'user' ? 'users.php' : 'groups.php'; ?>">Back to <?php echo $entityType === 'user' ? 'Users' : 'Groups'; ?></a>
+                <a href="<?php echo $entityType === 'user' ? 'users.php' : ($entityType === 'group' ? 'groups.php' : 'subjects.php'); ?>">Back to <?php echo $entityType === 'user' ? 'Users' : ($entityType === 'group' ? 'Groups' : 'Subjects'); ?></a>
             </div>
         </div>
     </main>

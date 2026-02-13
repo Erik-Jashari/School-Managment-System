@@ -25,6 +25,12 @@
         $sql = "DELETE FROM Groups WHERE GroupID=$id";
         $connection->query($sql);
         header("Location: groups.php");
+    } elseif (isset($_GET['SubjectID'])) {
+        $id = $_GET['SubjectID'];
+
+        $sql = "DELETE FROM Subjects WHERE SubjectID=$id";
+        $connection->query($sql);
+        header("Location: subjects.php");
     }
 
     exit;
