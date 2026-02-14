@@ -240,7 +240,7 @@ if (!empty($groupIds)) {
                         <div class="lesson-item">
                             <h3>No submissions yet</h3>
                             <div class="lesson-meta">
-                                <span>Submit your first assignment to see it here</span>
+                                <span>Submit your assignments to see them here</span>
                             </div>
                         </div>
                     <?php else: ?>
@@ -260,7 +260,7 @@ if (!empty($groupIds)) {
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
-                <a href="Assignments.html"><button class="outline-button">View All Assignments</button></a>
+                <a href="Dashboard.php"><button class="outline-button">View All Assignments</button></a>
             </div>
 
             <!-- Groups & Quick Actions -->
@@ -282,7 +282,7 @@ if (!empty($groupIds)) {
 
                 <h3 class="quick-actions-title">Quick Actions</h3>
                 <div class="actions-container">
-                    <a href="Assignments.html"><button class="primary-button">View Assignments</button></a>
+                    <a href="Dashboard.php"><button class="primary-button">View Assignments</button></a>
                     <a href="Contact.php"><button class="outline-button">Contact Us</button></a>
                     <a href="includes/logout.php"><button class="outline-button">Logout</button></a>
                 </div>

@@ -116,6 +116,27 @@ $stmt->close();
 // Today's date for attendance lookup
 $today = date('Y-m-d');
 
+// Fetch assignments for the selected group
+$assignmentsQuery = "
+    SELECT a.AssignmentID, a.Title, a.Description, a.DueDate,
+           s.Name AS SubjectName,
+           sub.SubmissionID, sub.Status AS SubmissionStatus, sub.FilePath AS SubmissionFile, sub.SubmittedAt
+    FROM Assignments a
+    LEFT JOIN Subjects s ON a.SubjectID = s.SubjectID
+    LEFT JOIN Submissions sub ON a.AssignmentID = sub.AssignmentID AND sub.UsersID = ?
+    WHERE a.GroupID = ?
+    ORDER BY a.DueDate ASC
+";
+$stmt = $connection->prepare($assignmentsQuery);
+$stmt->bind_param('ii', $userId, $selectedGroup);
+$stmt->execute();
+$assignmentsResult = $stmt->get_result();
+$assignments = [];
+while ($row = $assignmentsResult->fetch_assoc()) {
+    $assignments[] = $row;
+}
+$stmt->close();
+
 // Helper to get letter grade
 function getLetterGrade($pct) {
     if ($pct === null) return ['—', ''];
@@ -218,6 +239,73 @@ function getLetterGrade($pct) {
                     </tbody>
                 </table>
             </section>
+
+            <!-- Homework Upload Section -->
+            <?php if ($userRole === 'Student' && $selectedGroup > 0): ?>
+            <section class="homework-section">
+                <div class="section-header">
+                    <h2>Homework & Assignments</h2>
+                </div>
+
+                <?php if (count($assignments) === 0): ?>
+                    <p class="no-assignments">No assignments for this group yet.</p>
+                <?php else: ?>
+                    <div class="assignments-list">
+                        <?php foreach ($assignments as $assignment):
+                            $isPastDue = strtotime($assignment['DueDate']) < strtotime($today);
+                            $isSubmitted = !empty($assignment['SubmissionID']);
+                            $statusLabel = 'Not Submitted';
+                            $statusClass = 'status-pending';
+                            if ($isSubmitted) {
+                                $statusLabel = ucfirst($assignment['SubmissionStatus']);
+                                if ($assignment['SubmissionStatus'] === 'Submitted') $statusClass = 'status-submitted';
+                                elseif ($assignment['SubmissionStatus'] === 'Graded') $statusClass = 'status-graded';
+                            } elseif ($isPastDue) {
+                                $statusLabel = 'Past Due';
+                                $statusClass = 'status-overdue';
+                            }
+                        ?>
+                        <div class="assignment-card">
+                            <div class="assignment-info">
+                                <h4><?php echo htmlspecialchars($assignment['Title']); ?></h4>
+                                <?php if ($assignment['SubjectName']): ?>
+                                    <span class="assignment-subject"><?php echo htmlspecialchars($assignment['SubjectName']); ?></span>
+                                <?php endif; ?>
+                                <?php if ($assignment['Description']): ?>
+                                    <p class="assignment-desc"><?php echo htmlspecialchars($assignment['Description']); ?></p>
+                                <?php endif; ?>
+                                <div class="assignment-meta">
+                                    <span class="due-date <?php echo $isPastDue ? 'overdue' : ''; ?>">
+                                        Due: <?php echo date('M d, Y', strtotime($assignment['DueDate'])); ?>
+                                    </span>
+                                    <span class="submission-status <?php echo $statusClass; ?>"><?php echo $statusLabel; ?></span>
+                                </div>
+                                <?php if ($isSubmitted && $assignment['SubmissionFile']): ?>
+                                    <p class="submitted-file">Submitted: <a href="<?php echo htmlspecialchars($assignment['SubmissionFile']); ?>" target="_blank"><?php echo htmlspecialchars(basename($assignment['SubmissionFile'])); ?></a>
+                                    <span class="submitted-date"> on <?php echo date('M d, Y h:i A', strtotime($assignment['SubmittedAt'])); ?></span></p>
+                                <?php endif; ?>
+                            </div>
+                            <div class="assignment-upload">
+                                <?php if (!$isSubmitted || $assignment['SubmissionStatus'] === 'Pending'): ?>
+                                    <form class="upload-form" data-assignment-id="<?php echo $assignment['AssignmentID']; ?>" enctype="multipart/form-data">
+                                        <label class="file-label">
+                                            <input type="file" name="homework_file" class="file-input" accept=".pdf,.doc,.docx,.txt,.zip,.rar,.jpg,.jpeg,.png,.pptx,.xlsx" />
+                                            <span class="file-btn">Choose File</span>
+                                            <span class="file-name">No file chosen</span>
+                                        </label>
+                                        <button type="submit" class="upload-btn" disabled>Upload</button>
+                                    </form>
+                                    <p class="upload-hint">Accepted: PDF, DOC, DOCX, TXT, ZIP, images (max 10MB)</p>
+                                <?php else: ?>
+                                    <span class="already-submitted">✔ Submitted</span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
+            </section>
+            <?php endif; ?>
         </div>
     </main>
 
