@@ -127,6 +127,7 @@ a:hover {
 }
 
 /* RESPONSIVE DESIGN */
+/* ===== RESPONSIVE: Shared card layout for all admin tables ===== */
 @media screen and (max-width: 768px) {
     .header-actions {
         flex-direction: column;
@@ -141,18 +142,81 @@ a:hover {
     .add-user-btn {
         width: 100%;
         text-align: center;
+        box-sizing: border-box;
     }
 
     .admin-container {
         padding: 1rem;
     }
 
-    table {
-        font-size: 0.875rem;
+    table thead {
+        display: none;
     }
 
-    th, td {
-        padding: 0.5rem;
+    table, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    table {
+        border: none;
+        box-shadow: none;
+        background: transparent;
+    }
+
+    tbody tr {
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
+        padding: 1rem;
+        overflow: hidden;
+    }
+
+    tbody tr:hover {
+        background-color: white;
+    }
+
+    td {
+        padding: 0.4rem 0;
+        border-bottom: none !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #4CAF50;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.03rem;
+        min-width: 6rem;
+        flex-shrink: 0;
+    }
+
+    .actions-cell {
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        padding-top: 0.75rem !important;
+        margin-top: 0.5rem;
+        border-top: 1px solid #e0e0e0 !important;
+    }
+
+    .actions-cell::before {
+        display: none;
+    }
+
+    .btn-edit,
+    .btn-delete {
+        flex: 1;
+        text-align: center;
+        padding: 0.6rem 1rem;
     }
 }
 
@@ -161,17 +225,24 @@ a:hover {
         font-size: 1.25rem;
     }
 
-    table {
-        font-size: 0.75rem;
-    }
-
-    th, td {
-        padding: 0.375rem;
-    }
-
     .add-user-btn {
         font-size: 0.875rem;
         padding: 0.625rem 1.25rem;
+    }
+
+    tbody tr {
+        padding: 0.75rem;
+    }
+
+    td {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+
+    .actions-cell {
+        flex-direction: row;
+        align-items: stretch;
     }
 }
 

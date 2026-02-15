@@ -68,12 +68,12 @@
 
                         echo "
                             <tr>
-                                <td>{$row['ReviewsID']}</td>
-                                <td>{$studentName}</td>
-                                <td>{$lessonTitle}</td>
-                                <td><span class='star-rating'>{$stars}</span></td>
-                                <td class='review-comment' title='{$comment}'>{$comment}</td>
-                                <td>{$row['CreatedAt']}</td>
+                                <td data-label='ID'>{$row['ReviewsID']}</td>
+                                <td data-label='Student'>{$studentName}</td>
+                                <td data-label='Lesson'>{$lessonTitle}</td>
+                                <td data-label='Rating'><span class='star-rating'>{$stars}</span></td>
+                                <td data-label='Comment' class='review-comment' title='{$comment}'>{$comment}</td>
+                                <td data-label='Created'>{$row['CreatedAt']}</td>
                                 <td class='actions-cell'>
                                     <a href='delete.php?ReviewsID={$row['ReviewsID']}' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this review?')\">Delete</a>
                                 </td>

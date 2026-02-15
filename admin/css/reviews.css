@@ -78,15 +78,11 @@ table[border] tbody tr:last-child td {
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
 }
 
+/* ===== RESPONSIVE: Page-specific overrides ===== */
 @media (max-width: 768px) {
-    .actions-cell {
-        flex-direction: column;
-        gap: 0.25rem;
-    }
-
-    .btn-edit,
-    .btn-delete {
-        width: 100%;
-        text-align: center;
+    .review-comment {
+        max-width: none;
+        white-space: normal;
+        word-wrap: break-word;
     }
 }

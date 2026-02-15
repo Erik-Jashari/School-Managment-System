@@ -38,11 +38,11 @@
                     while($row = $result->fetch_assoc()){
                         echo "
                             <tr>
-                                <td>{$row['UsersID']}</td>
-                                <td>{$row['Name']}</td>
-                                <td>{$row['Email']}</td>
-                                <td>{$row['Role']}</td>
-                                <td>{$row['CreatedAt']}</td>
+                                <td data-label='ID'>{$row['UsersID']}</td>
+                                <td data-label='Username'>{$row['Name']}</td>
+                                <td data-label='Email'>{$row['Email']}</td>
+                                <td data-label='Role'>{$row['Role']}</td>
+                                <td data-label='Created'>{$row['CreatedAt']}</td>
                                 <td class=\"actions-cell\">
                                     <a href='edit.php?UsersID={$row['UsersID']}' class='btn-edit'>Edit</a>
                                     <a href='delete.php?UsersID={$row['UsersID']}' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this user?')\">Delete</a>

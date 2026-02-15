@@ -59,13 +59,13 @@
                             
                             echo "
                                 <tr>
-                                    <td>{$row['LessonID']}</td>
-                                    <td class='title-cell'>{$title}</td>
-                                    <td class='description-cell'>{$description}</td>
-                                    <td><span class='group-badge'>{$group}</span></td>
-                                    <td><span class='subject-badge'>{$subject}</span></td>
-                                    <td>{$uploader}</td>
-                                    <td class='upload-time'>{$uploadTime}</td>
+                                    <td data-label='ID'>{$row['LessonID']}</td>
+                                    <td data-label='Title' class='title-cell'>{$title}</td>
+                                    <td data-label='Description' class='description-cell'>{$description}</td>
+                                    <td data-label='Group'><span class='group-badge'>{$group}</span></td>
+                                    <td data-label='Subject'><span class='subject-badge'>{$subject}</span></td>
+                                    <td data-label='Uploaded By'>{$uploader}</td>
+                                    <td data-label='Upload Time' class='upload-time'>{$uploadTime}</td>
                                     <td class='actions-cell'>
                                         <a href='edit.php?LessonID={$row['LessonID']}' class='btn-edit'>Edit</a>
                                         <a href='delete.php?LessonID={$row['LessonID']}' class='btn-delete' onclick='return confirm(\"Are you sure you want to delete this lesson? This cannot be undone.\")'>Delete</a>

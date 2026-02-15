@@ -62,13 +62,13 @@
                             
                             echo "
                                 <tr>
-                                    <td>{$row['AssignmentID']}</td>
-                                    <td class='title-cell'>{$title}</td>
-                                    <td class='description-cell'>{$description}</td>
-                                    <td class='{$dueDateClass}'>{$dueDate}</td>
-                                    <td><span class='group-badge'>{$group}</span></td>
-                                    <td><span class='subject-badge'>{$subject}</span></td>
-                                    <td class='lesson-cell'>{$lesson}</td>
+                                    <td data-label='ID'>{$row['AssignmentID']}</td>
+                                    <td data-label='Title' class='title-cell'>{$title}</td>
+                                    <td data-label='Description' class='description-cell'>{$description}</td>
+                                    <td data-label='Due Date' class='{$dueDateClass}'>{$dueDate}</td>
+                                    <td data-label='Group'><span class='group-badge'>{$group}</span></td>
+                                    <td data-label='Subject'><span class='subject-badge'>{$subject}</span></td>
+                                    <td data-label='Lesson' class='lesson-cell'>{$lesson}</td>
                                     <td class='actions-cell'>
                                         <a href='edit.php?AssignmentID={$row['AssignmentID']}' class='btn-edit'>Edit</a>
                                         <a href='delete.php?AssignmentID={$row['AssignmentID']}' class='btn-delete' onclick='return confirm(\"Are you sure you want to delete this assignment? All related submissions will also be deleted.\")'>Delete</a>

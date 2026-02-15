@@ -66,12 +66,12 @@ if (isset($_GET['CM_ID'], $_GET['action'])) {
                         
                         echo "
                             <tr class='{$rowClass}'>
-                                <td>{$row['CM_ID']}</td>
-                                <td>{$row['Name']}</td>
-                                <td>{$row['Email']}</td>
-                                <td>{$row['Message']}</td>
-                                <td>{$row['CreatedAt']}</td>
-                                <td>{$statusBadge}</td>
+                                <td data-label='ID'>{$row['CM_ID']}</td>
+                                <td data-label='Name'>{$row['Name']}</td>
+                                <td data-label='Email'>{$row['Email']}</td>
+                                <td data-label='Message'>{$row['Message']}</td>
+                                <td data-label='Created'>{$row['CreatedAt']}</td>
+                                <td data-label='Status'>{$statusBadge}</td>
                                 <td class='actions-cell'>{$toggleLink} {$deleteLink}</td>
                             </tr>
                         ";
