@@ -209,7 +209,7 @@ function getLetterGrade($pct) {
                             </td>
                             <td data-label="Current Grade"><span class="grade-badge <?php echo $gradeClass; ?>"><?php echo $gradeText; ?></span></td>
                             <td data-label="Missing Work"><span style="color: <?php echo $missingColor; ?>;"><?php echo $missingText; ?></span></td>
-                            <td data-label="Actions"><a href="edit.php?UsersID=<?php echo $student['UsersID']; ?>" class="btn-edit">Edit</a></td>
+                            <td data-label="Actions"><a href="grades.php?class=<?php echo $selectedGroup; ?>&student=<?php echo $student['UsersID']; ?>" class="btn-edit">Edit</a></td>
                         </tr>
                         <?php endwhile; ?>
                         <?php if ($totalStudents === 0): ?>

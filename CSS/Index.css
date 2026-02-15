@@ -67,8 +67,8 @@
 
 /* FEATURES SECTION */
 .features{
-    margin-top: 40px;
-    padding: 40px;
+    margin-top: 20px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     gap: 40px;
@@ -82,8 +82,12 @@
     background: white;
 }
 .feature-box h3{
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 22px;
+}
+.feature-box p{
+    font-size: 16px;
+    color: #555;
 }
 
 /*Image Slider*/

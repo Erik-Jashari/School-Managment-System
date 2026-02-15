@@ -226,7 +226,7 @@
 }
 .about-approach h2{
     margin-bottom: 18px;
-    font-size: 26px;
+    font-size: 28px;
 }
 .approach-grid{
     display: grid;
@@ -242,6 +242,11 @@
 }
 .approach-box h3{
     margin-bottom: 8px;
+    font-size: 20px;
+}
+.approach-box p{
+    font-size: 14px;
+    color: #555;
 }
 .about-cta{
     margin-top: 6px;
@@ -255,6 +260,7 @@
     text-decoration: none;
     font-weight: 600;
     box-shadow: 0 6px 18px rgba(45,114,217,0.18);
+    font-size: 20px;
 }
 .cta-button:hover{
     opacity:0.95;
