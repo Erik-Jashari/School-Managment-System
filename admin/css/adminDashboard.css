@@ -78,24 +78,26 @@
 .stat-info h4 { 
     margin: 0; 
     color: #666; 
-    font-size: 0.9rem; 
-    font-weight: normal; 
+    font-size: 1.05rem; 
+    font-weight: 600; 
 }
 .stat-info p { 
-    margin: 5px 0 0 0; 
-    font-size: 1.5rem; 
-    font-weight: bold; 
+    margin: 6px 0 0 0; 
+    font-size: 1.9rem; 
+    font-weight: 700; 
     color: #333; 
+    line-height: 1;
 }
 .stat-icon { 
-    width: 40px; 
-    height: 40px; 
+    width: 52px; 
+    height: 52px; 
     background: #e8f0fe; 
     border-radius: 50%; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     color: #1a73e8; 
+    font-size: 1.2rem;
 }
 
 /* Student Table Section */
@@ -211,7 +213,7 @@
     }
 
     .stat-info p {
-        font-size: 1.3rem; 
+        font-size: 1.6rem; 
     }
 
     .class-sidebar { 

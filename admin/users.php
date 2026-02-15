@@ -6,6 +6,7 @@
     <title>Users</title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/users.css">
+    <link rel="stylesheet" href="css/groups.css">
 </head>
 <body>
     <div id="app-header"></div>
@@ -42,9 +43,9 @@
                                 <td>{$row['Email']}</td>
                                 <td>{$row['Role']}</td>
                                 <td>{$row['CreatedAt']}</td>
-                                <td>
-                                    <a href='edit.php?UsersID={$row['UsersID']}'>Edit</a>
-                                    <a href='delete.php?UsersID={$row['UsersID']}' onclick='return confirm(\"Are you sure you want to delete this user?\")'>Delete</a>
+                                <td class=\"actions-cell\">
+                                    <a href='edit.php?UsersID={$row['UsersID']}' class='btn-edit'>Edit</a>
+                                    <a href='delete.php?UsersID={$row['UsersID']}' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this user?')\">Delete</a>
                                 </td>
                             </tr>
                         ";
