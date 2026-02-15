@@ -37,6 +37,12 @@
         $sql = "DELETE FROM Submissions WHERE SubmissionID=$id";
         $connection->query($sql);
         header("Location: submissions.php");
+    } elseif (isset($_GET['LessonID'])) {
+        $id = $_GET['LessonID'];
+
+        $sql = "DELETE FROM Lessons WHERE LessonID=$id";
+        $connection->query($sql);
+        header("Location: lessons.php");
     }
 
     exit;
