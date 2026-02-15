@@ -1,3 +1,19 @@
+table[border] {
+    border: none;
+}
+
+table[border] th,
+table[border] td {
+    border: none;
+}
+
+table[border] td {
+    border-bottom: 0.0625rem solid #e0e0e0;
+}
+
+table[border] tbody tr:last-child td {
+    border-bottom: none;
+}
 body {
     margin: 0;
     padding: 0;

@@ -180,7 +180,7 @@ INSERT INTO Assignments (Title, Description, DueDate, LessonID, GroupID, Subject
 -- SUBMISSIONS (Sample student submissions)
 -- =============================================
 
-INSERT INTO Submissions (AssignmentID, UsersID, SubmittedAt, Grade, Status, FilePath) VALUES
+/* INSERT INTO Submissions (AssignmentID, UsersID, SubmittedAt, Grade, Status, FilePath) VALUES
 -- Assignment 1 (Algjebra) - Most students submitted
 (1, 2, '2026-01-14 10:30:00', 85.00, 'Graded', 'uploads/arta_algjebra.pdf'),
 (1, 3, '2026-01-14 14:20:00', 92.00, 'Graded', 'uploads/blend_algjebra.pdf'),
@@ -200,13 +200,13 @@ INSERT INTO Submissions (AssignmentID, UsersID, SubmittedAt, Grade, Status, File
 
 -- Assignment 8 (Biology Essay) - Pending submissions
 (8, 2, '2026-01-18 14:00:00', NULL, 'Submitted', 'uploads/arta_qeliza.pdf'),
-(8, 4, '2026-01-18 16:30:00', NULL, 'Submitted', 'uploads/dea_qeliza.pdf');
+(8, 4, '2026-01-18 16:30:00', NULL, 'Submitted', 'uploads/dea_qeliza.pdf'); */
 
 -- =============================================
 -- ATTENDANCE (Sample attendance for this week)
 -- =============================================
 
-INSERT INTO Attendance (UsersID, ScheduleID, Date, Status) VALUES
+/* INSERT INTO Attendance (UsersID, ScheduleID, Date, Status) VALUES
 -- Monday attendance for Klasa 10-A (ScheduleID 1, 2, 3)
 (2, 1, '2026-01-06', 'Present'),
 (3, 1, '2026-01-06', 'Present'),
@@ -225,7 +225,7 @@ INSERT INTO Attendance (UsersID, ScheduleID, Date, Status) VALUES
 (3, 4, '2026-01-07', 'Present'),
 (4, 4, '2026-01-07', 'Present'),
 (5, 4, '2026-01-07', 'Absent'),
-(6, 4, '2026-01-07', 'Present');
+(6, 4, '2026-01-07', 'Present'); */
 
 -- =============================================
 -- REVIEWS (Student reviews for lessons)
