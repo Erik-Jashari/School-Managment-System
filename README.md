@@ -51,6 +51,13 @@ School-Managment-System/
 │   ├── delete.php          # Generic delete handler
 │   ├── contactMessages.php # Manage contact form messages
 │   ├── reviews.php         # Manage student reviews
+│   ├── grades.php          # Manage student grades
+│   ├── lessons.php         # Manage student lessons
+│   ├── subjects.php        # Manage student subjects
+│   ├── submissions.php     # Manage student submissions
+│   ├── schedules.php       # Manage student schedules
+│   ├── groups.php          # Manage student groups
+│   ├── assignments.php     # Manage student assignments
 │   └── css/                # Admin-specific styles
 │
 ├── config/
