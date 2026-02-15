@@ -1,0 +1,148 @@
+table[border] {
+    border: none;
+}
+
+table[border] th,
+table[border] td {
+    border: none;
+}
+
+table[border] td {
+    border-bottom: 0.0625rem solid #e0e0e0;
+}
+
+table[border] tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.no-data {
+    text-align: center;
+    color: #999;
+    padding: 2rem !important;
+    font-style: italic;
+}
+
+.no-data a {
+    color: #4CAF50;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.no-data a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
+.title-cell {
+    font-weight: 600;
+    color: #333;
+}
+
+.description-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.description-cell:hover {
+    overflow: visible;
+    white-space: normal;
+    word-wrap: break-word;
+    background-color: #e8f5e9;
+    padding: 0.75rem 0.9375rem;
+}
+
+.due-date {
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.due-date.overdue {
+    color: #e53935;
+}
+
+.due-date.upcoming {
+    color: #4CAF50;
+}
+
+.group-badge,
+.subject-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+}
+
+.group-badge {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: #4CAF50;
+}
+
+.subject-badge {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: #2196F3;
+}
+
+.lesson-cell {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #555;
+    font-size: 0.875rem;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    color: white !important;
+}
+
+.btn-edit {
+    background-color: #4CAF50;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.btn-delete {
+    background-color: #e57373;
+}
+
+.btn-delete:hover {
+    background-color: #ef5350;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .actions-cell {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .description-cell,
+    .lesson-cell {
+        max-width: 120px;
+    }
+}

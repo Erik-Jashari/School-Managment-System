@@ -17,6 +17,9 @@
     } elseif (isset($_GET['LessonID'])) {
         $id = $_GET['LessonID'];
         $entityType = 'lesson';
+    } elseif (isset($_GET['AssignmentID'])) {
+        $id = $_GET['AssignmentID'];
+        $entityType = 'assignment';
     } else {
         header("Location: users.php");
         exit;
@@ -322,6 +325,109 @@
                 }
             }
         }
+    } elseif ($entityType === 'assignment') {
+        // Fetch groups, subjects, and lessons for dropdowns
+        $groupsResult = $connection->query("SELECT GroupID, GroupName FROM Groups ORDER BY GroupName ASC");
+        $groupsList = [];
+        while ($g = $groupsResult->fetch_assoc()) {
+            $groupsList[] = $g;
+        }
+
+        $subjectsResult = $connection->query("SELECT SubjectID, Name FROM Subjects ORDER BY Name ASC");
+        $subjectsList = [];
+        while ($s = $subjectsResult->fetch_assoc()) {
+            $subjectsList[] = $s;
+        }
+
+        $lessonsResult = $connection->query("SELECT LessonID, Title FROM Lessons ORDER BY Title ASC");
+        $lessonsList = [];
+        while ($l = $lessonsResult->fetch_assoc()) {
+            $lessonsList[] = $l;
+        }
+
+        if ($id === 'new') {
+            $assignmentTitle = '';
+            $description = '';
+            $dueDate = '';
+            $selectedGroupId = '';
+            $selectedSubjectId = '';
+            $selectedLessonId = '';
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $assignmentTitle = $_POST['assignmentTitle'] ?? '';
+                $description = $_POST['description'] ?? '';
+                $dueDate = $_POST['dueDate'] ?? '';
+                $selectedGroupId = $_POST['groupId'] ?? '';
+                $selectedSubjectId = $_POST['subjectId'] ?? '';
+                $selectedLessonId = $_POST['lessonId'] ?? '';
+
+                if (empty($assignmentTitle) || empty($dueDate) || empty($selectedGroupId)) {
+                    $errorMessage = "Title, due date, and group are required";
+                } else {
+                    $assignmentTitle = $connection->real_escape_string($assignmentTitle);
+                    $description = $connection->real_escape_string($description);
+                    $dueDate = $connection->real_escape_string($dueDate);
+                    $groupVal = (int)$selectedGroupId;
+                    $subjectVal = !empty($selectedSubjectId) ? (int)$selectedSubjectId : 'NULL';
+                    $lessonVal = !empty($selectedLessonId) ? (int)$selectedLessonId : 'NULL';
+
+                    $sql = "INSERT INTO Assignments (Title, Description, DueDate, LessonID, GroupID, SubjectID) VALUES ('$assignmentTitle', '$description', '$dueDate', $lessonVal, $groupVal, $subjectVal)";
+                    $result = $connection->query($sql);
+
+                    if (!$result) {
+                        $errorMessage = "Error creating assignment: " . $connection->error;
+                    } else {
+                        header("Location: assignments.php");
+                        exit;
+                    }
+                }
+            }
+        } else {
+            $sql = "SELECT * FROM Assignments WHERE AssignmentID=$id";
+            $result = $connection->query($sql);
+
+            if (!$result || $result->num_rows == 0) {
+                die("Assignment does not exist.");
+            }
+
+            $assignment = $result->fetch_assoc();
+            $assignmentTitle = $assignment['Title'];
+            $description = $assignment['Description'];
+            $dueDate = $assignment['DueDate'];
+            $selectedGroupId = $assignment['GroupID'];
+            $selectedSubjectId = $assignment['SubjectID'];
+            $selectedLessonId = $assignment['LessonID'];
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $assignmentTitle = $_POST['assignmentTitle'] ?? '';
+                $description = $_POST['description'] ?? '';
+                $dueDate = $_POST['dueDate'] ?? '';
+                $selectedGroupId = $_POST['groupId'] ?? '';
+                $selectedSubjectId = $_POST['subjectId'] ?? '';
+                $selectedLessonId = $_POST['lessonId'] ?? '';
+
+                if (empty($assignmentTitle) || empty($dueDate) || empty($selectedGroupId)) {
+                    $errorMessage = "Title, due date, and group are required";
+                } else {
+                    $assignmentTitle = $connection->real_escape_string($assignmentTitle);
+                    $description = $connection->real_escape_string($description);
+                    $dueDate = $connection->real_escape_string($dueDate);
+                    $groupVal = (int)$selectedGroupId;
+                    $subjectVal = !empty($selectedSubjectId) ? (int)$selectedSubjectId : 'NULL';
+                    $lessonVal = !empty($selectedLessonId) ? (int)$selectedLessonId : 'NULL';
+
+                    $sql = "UPDATE Assignments SET Title='$assignmentTitle', Description='$description', DueDate='$dueDate', LessonID=$lessonVal, GroupID=$groupVal, SubjectID=$subjectVal WHERE AssignmentID=$id";
+                    $result = $connection->query($sql);
+
+                    if (!$result) {
+                        $errorMessage = "Error updating assignment: " . $connection->error;
+                    } else {
+                        header("Location: assignments.php");
+                        exit;
+                    }
+                }
+            }
+        }
     }
 ?>
 
@@ -330,7 +436,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $entityType === 'user' ? 'Edit User' : ($entityType === 'group' ? ($id === 'new' ? 'Create Group' : 'Edit Group') : ($entityType === 'subject' ? ($id === 'new' ? 'Create Subject' : 'Edit Subject') : ($id === 'new' ? 'Create Lesson' : 'Edit Lesson'))); ?></title>
+    <title><?php 
+        if ($entityType === 'user') echo 'Edit User';
+        elseif ($entityType === 'group') echo $id === 'new' ? 'Create Group' : 'Edit Group';
+        elseif ($entityType === 'subject') echo $id === 'new' ? 'Create Subject' : 'Edit Subject';
+        elseif ($entityType === 'lesson') echo $id === 'new' ? 'Create Lesson' : 'Edit Lesson';
+        elseif ($entityType === 'assignment') echo $id === 'new' ? 'Create Assignment' : 'Edit Assignment';
+    ?></title>
     <link rel="stylesheet" href="../CSS/Global.css">
     <link rel="stylesheet" href="css/edit.css">
 </head>
@@ -338,8 +450,20 @@
     <div id="app-header"></div>
     <main class="admin-container">
         <div class="editForm">
-            <h1><?php echo $entityType === 'user' ? 'Edit User' : ($entityType === 'group' ? ($id === 'new' ? 'Create Group' : 'Edit Group') : ($entityType === 'subject' ? ($id === 'new' ? 'Create Subject' : 'Edit Subject') : ($id === 'new' ? 'Create Lesson' : 'Edit Lesson'))); ?></h1>
-            <p class="subtitle"><?php echo $entityType === 'user' ? 'Update user information' : ($entityType === 'group' ? ($id === 'new' ? 'Add a new group to the system' : 'Update group information') : ($entityType === 'subject' ? ($id === 'new' ? 'Add a new subject to the system' : 'Update subject information') : ($id === 'new' ? 'Add a new lesson to the system' : 'Update lesson information'))); ?></p>
+            <h1><?php 
+                if ($entityType === 'user') echo 'Edit User';
+                elseif ($entityType === 'group') echo $id === 'new' ? 'Create Group' : 'Edit Group';
+                elseif ($entityType === 'subject') echo $id === 'new' ? 'Create Subject' : 'Edit Subject';
+                elseif ($entityType === 'lesson') echo $id === 'new' ? 'Create Lesson' : 'Edit Lesson';
+                elseif ($entityType === 'assignment') echo $id === 'new' ? 'Create Assignment' : 'Edit Assignment';
+            ?></h1>
+            <p class="subtitle"><?php 
+                if ($entityType === 'user') echo 'Update user information';
+                elseif ($entityType === 'group') echo $id === 'new' ? 'Add a new group to the system' : 'Update group information';
+                elseif ($entityType === 'subject') echo $id === 'new' ? 'Add a new subject to the system' : 'Update subject information';
+                elseif ($entityType === 'lesson') echo $id === 'new' ? 'Add a new lesson to the system' : 'Update lesson information';
+                elseif ($entityType === 'assignment') echo $id === 'new' ? 'Add a new assignment to the system' : 'Update assignment information';
+            ?></p>
             
             <?php 
                 if(!empty($errorMessage)){
@@ -419,11 +543,64 @@
                     </select>
 
                     <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Lesson' : 'Update Lesson'; ?></button>
+                <?php elseif ($entityType === 'assignment'): ?>
+                    <label for="assignmentTitle">Assignment Title</label>
+                    <input type="text" id="assignmentTitle" name="assignmentTitle" value="<?php echo htmlspecialchars($assignmentTitle); ?>" placeholder="Enter assignment title" required>
+
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" placeholder="Enter assignment description" rows="4"><?php echo htmlspecialchars($description); ?></textarea>
+
+                    <label for="dueDate">Due Date</label>
+                    <input type="date" id="dueDate" name="dueDate" value="<?php echo htmlspecialchars($dueDate); ?>" required>
+
+                    <label for="groupId">Group (required)</label>
+                    <select id="groupId" name="groupId" required>
+                        <option value="">Select a group</option>
+                        <?php foreach($groupsList as $g): ?>
+                            <option value="<?php echo $g['GroupID']; ?>" <?php echo ($selectedGroupId == $g['GroupID']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($g['GroupName']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label for="subjectId">Subject</label>
+                    <select id="subjectId" name="subjectId">
+                        <option value="">No subject</option>
+                        <?php foreach($subjectsList as $s): ?>
+                            <option value="<?php echo $s['SubjectID']; ?>" <?php echo ($selectedSubjectId == $s['SubjectID']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($s['Name']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <label for="lessonId">Lesson</label>
+                    <select id="lessonId" name="lessonId">
+                        <option value="">No lesson</option>
+                        <?php foreach($lessonsList as $l): ?>
+                            <option value="<?php echo $l['LessonID']; ?>" <?php echo ($selectedLessonId == $l['LessonID']) ? 'selected' : ''; ?>>
+                                <?php echo htmlspecialchars($l['Title']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+
+                    <button type="submit" class="submit-button"><?php echo $id === 'new' ? 'Create Assignment' : 'Update Assignment'; ?></button>
                 <?php endif; ?>
             </form>
             
             <div class="edit-links-text">
-                <a href="<?php echo $entityType === 'user' ? 'users.php' : ($entityType === 'group' ? 'groups.php' : ($entityType === 'subject' ? 'subjects.php' : 'lessons.php')); ?>">Back to <?php echo $entityType === 'user' ? 'Users' : ($entityType === 'group' ? 'Groups' : ($entityType === 'subject' ? 'Subjects' : 'Lessons')); ?></a>
+                <a href="<?php 
+                    if ($entityType === 'user') echo 'users.php';
+                    elseif ($entityType === 'group') echo 'groups.php';
+                    elseif ($entityType === 'subject') echo 'subjects.php';
+                    elseif ($entityType === 'lesson') echo 'lessons.php';
+                    elseif ($entityType === 'assignment') echo 'assignments.php';
+                ?>">Back to <?php 
+                    if ($entityType === 'user') echo 'Users';
+                    elseif ($entityType === 'group') echo 'Groups';
+                    elseif ($entityType === 'subject') echo 'Subjects';
+                    elseif ($entityType === 'lesson') echo 'Lessons';
+                    elseif ($entityType === 'assignment') echo 'Assignments';
+                ?></a>
             </div>
         </div>
     </main>

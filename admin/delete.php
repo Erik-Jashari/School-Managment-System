@@ -43,6 +43,12 @@
         $sql = "DELETE FROM Lessons WHERE LessonID=$id";
         $connection->query($sql);
         header("Location: lessons.php");
+    } elseif (isset($_GET['AssignmentID'])) {
+        $id = $_GET['AssignmentID'];
+
+        $sql = "DELETE FROM Assignments WHERE AssignmentID=$id";
+        $connection->query($sql);
+        header("Location: assignments.php");
     }
 
     exit;
