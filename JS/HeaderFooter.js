@@ -1,6 +1,6 @@
 const AppHeader = `
     <nav class="nav-bar">
-        <a href="Index.html"><div class="logo-box">SM</div></a>
+        <a href="/School-Managment-System/Index.html"><div class="logo-box">SM</div></a>
         <button id="hamburgerBtn" class="hamburger" aria-label="Toggle navigation" aria-expanded="false">
             <span></span>
             <span></span>

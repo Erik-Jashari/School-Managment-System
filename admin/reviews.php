@@ -74,8 +74,8 @@
                                 <td><span class='star-rating'>{$stars}</span></td>
                                 <td class='review-comment' title='{$comment}'>{$comment}</td>
                                 <td>{$row['CreatedAt']}</td>
-                                <td>
-                                    <a href='delete.php?ReviewsID={$row['ReviewsID']}' onclick=\"return confirm('Are you sure you want to delete this review?')\">Delete</a>
+                                <td class='actions-cell'>
+                                    <a href='delete.php?ReviewsID={$row['ReviewsID']}' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this review?')\">Delete</a>
                                 </td>
                             </tr>
                         ";

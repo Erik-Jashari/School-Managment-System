@@ -60,9 +60,9 @@ if (isset($_GET['CM_ID'], $_GET['action'])) {
                             ? '<span class="status-badge badge-read">Read</span>' 
                             : '<span class="status-badge badge-unread">Unread</span>';
                         $toggleLink = $isRead 
-                            ? "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=unread'>Mark As Unread</a>"
-                            : "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=read'>Mark As Read</a>";
-                        $deleteLink = "<a href='delete.php?CM_ID={$row['CM_ID']}' onclick=\"return confirm('Are you sure you want to delete this message?');\">Delete</a>";
+                            ? "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=unread' class='btn-read'>Mark As Unread</a>"
+                            : "<a href='contactMessages.php?CM_ID={$row['CM_ID']}&action=read' class='btn-read'>Mark As Read</a>";
+                        $deleteLink = "<a href='delete.php?CM_ID={$row['CM_ID']}' class='btn-delete' onclick=\"return confirm('Are you sure you want to delete this message?');\">Delete</a>";
                         
                         echo "
                             <tr class='{$rowClass}'>
@@ -72,7 +72,7 @@ if (isset($_GET['CM_ID'], $_GET['action'])) {
                                 <td>{$row['Message']}</td>
                                 <td>{$row['CreatedAt']}</td>
                                 <td>{$statusBadge}</td>
-                                <td>{$toggleLink} {$deleteLink}</td>
+                                <td class='actions-cell'>{$toggleLink} {$deleteLink}</td>
                             </tr>
                         ";
                     }

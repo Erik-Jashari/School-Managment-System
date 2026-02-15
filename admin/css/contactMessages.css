@@ -21,3 +21,59 @@ tr:nth-child(even) {
     background-color: #ffc107;
     color: black;
 }
+
+/* Action Buttons */
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-read {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-decoration: none !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    color: white !important;
+}
+
+.btn-edit,
+.btn-read {
+    background-color: #4CAF50;
+}
+
+.btn-edit:hover,
+.btn-read:hover {
+    background-color: #45a049;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+.btn-delete {
+    background-color: #e57373;
+}
+
+.btn-delete:hover {
+    background-color: #ef5350;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .actions-cell {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .btn-edit,
+    .btn-delete,
+    .btn-read {
+        width: 100%;
+        text-align: center;
+    }
+}

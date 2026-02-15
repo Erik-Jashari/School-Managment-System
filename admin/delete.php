@@ -31,6 +31,12 @@
         $sql = "DELETE FROM Subjects WHERE SubjectID=$id";
         $connection->query($sql);
         header("Location: subjects.php");
+    } elseif (isset($_GET['SubmissionID'])) {
+        $id = $_GET['SubmissionID'];
+
+        $sql = "DELETE FROM Submissions WHERE SubmissionID=$id";
+        $connection->query($sql);
+        header("Location: submissions.php");
     }
 
     exit;
